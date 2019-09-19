@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# C:\Users\tamim\PyProjects\AutomatedRating\venv\Scripts\activate.bat
+# cd PyProjects\AutomatedRating\
 import os
 import sys
 
