@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3 class="center-align red lighten-3">{{post.title}}</h3>
+
+<div class="container">
+    <p>{{post.body}}</p>
+</div>
+<footer>{{post.created_at}}</footer>
+{% endblock %}
