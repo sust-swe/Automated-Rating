@@ -20,6 +20,10 @@
               
               <form action="{% url 'login' %}" method="POST">
                   {% csrf_token %}
+                  <!-- if next exist I mean login required then redirect that page-->
+                    {% if request.GET.next %}
+                      <input type="hidden" name="next" value="{{ request.GET.next }}">
+                    {% endif %}
                 <div class="form-group">
                   <label for="username">Username</label>
                   <input type="text" name="username" class="form-control" required>

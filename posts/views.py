@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 from .models import Posts
 
 # Create your views here.
+
 
 def index(request):
     #return HttpResponse('hello from posts')
@@ -15,7 +17,8 @@ def index(request):
         'posts' : posts
     }
 
-    return render(request, 'pages/index.html', context)
+    return render(request, 'posts/index.html', context)
+
 
 def details(request, id):
     post = Posts.objects.get(id=id)
@@ -24,7 +27,10 @@ def details(request, id):
         'post' : post 
     }
 
-    return render(request, 'pages/details.html', context)
+    return render(request, 'posts/details.html', context)
 
-def about(request):
-    return render(request, 'pages/about.html')
+
+@login_required(login_url="login")
+def create(request):
+    return render(request, 'posts/create.html')
+

@@ -1,0 +1,178 @@
+###Initial :
+	1. open terminal
+	2. go to projects directory
+	2. mkvirtualenv py1  (for creating virtual environment)
+		later access it by  -> workon py1
+
+	2. To install virtualenv in that project directory
+		- python -m venv ./venv
+		- ./venv/Scripts/activate.bat   or follow below line
+		- C:\Users\tamim\PyProjects\E_ApartmentShop\venv\Scripts\activate.bat (Full path of that file)
+	3. pip install django==2.1
+	4. django-admin help (for various command help )
+
+###Create Project :
+	1. django-admin startproject proj_name .  (you must put . to create on that directory)
+	2. go to project directory
+	3. code .   (to start with vscode)
+     ***4. python manage.py runserver
+	5. copy following mysql file to project folder
+	6. pip install mysqlclient-1.4.2-cp37-cp37m-win32.whl
+
+###Database Connect :
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'database_name',
+        'USER' : 'root',
+        'Password' : '',
+        'HOST' : 'localhost',
+        'PORT' : ''
+    }
+}
+
+	->python manage.py makemigrations	
+	->python manage.py migrate
+
+<!------------------------- New Learning in this project ------------------------------------------->
+
+### Add new column or Database table change
+	-> delete migration file except __init__.py 
+	-> python manage.py makemigrations posts  [posts is app name]
+	-> python manage.py migrate --fake posts zero
+	-> python manage.py migrate posts
+
+### adding login required function such as creating post :
+	-> See this : 
+		- Posts:view
+		- login.html
+		- login:view
+
+
+<!------------------------- Ending ------------------------------------------------------------------>
+
+###Create superuser
+	-> python manage.py createsuperuser --username=tamim --email=tamim@gmail.com
+	-> give password
+
+###Starting 
+	-> python manage.py startapp posts
+	-> go to django->settings.py
+	-> INSTALLED_APPS =[copy here
+		'posts',
+	->goto urls djangoproject and copy
+		from django.contrib import admin
+		from django.conf.urls import url,include
+		from django.urls import path
+
+		urlpatterns = [
+		    path('admin/', admin.site.urls),
+		    path('posts/', include('posts.urls'))
+		]
+	
+
+	-> goto urls posts
+		from django.conf.urls import url
+		from . import views 
+
+		urlpatterns = [
+	  	  url('^$', views.index, name = 'index')
+		];
+
+
+	-> goto views.py
+			from django.shortcuts import render
+			from django.http import HttpResponse
+
+			# Create your views here.
+
+			def index(request):
+   			 #return HttpResponse('hello from posts')
+
+			    return render(request, 'posts/index.html')
+
+-> make folder templates/posts 
+
+-> create index.html // using jinja template from layout.html
+	{% extends 'posts/layout.html' %}
+
+	{% block content %}
+		<h1>hllllllllllllllllllll</h1>
+	{% endblock %}
+
+-> create layout.html
+	<div class="container">
+            {% block content %}
+    	    {% endblock %}
+    	</div>
+
+
+-> create model for database posts/models.py
+	from django.db import models
+	from datetime import datetime
+
+	# Create your models here.
+	 class Posts(models.Model):
+         title = models.CharField(max_length = 200)
+   	 body = models.TextField()
+    	 created_at = models.DateTimeField(default=datetime.now, blank=True)
+
+-> at terminal
+	1. python manage.py makemigrations posts
+	2. python manage.py migrate
+
+-> add to admin.py
+	from .models import Posts
+
+	admin.site.register(Posts)
+
+-> add to models.py 
+	//to show name of the posts
+	def __str__(self):
+        return self.title
+	
+	//to show Posts instead of postss
+	class Meta:
+        verbose_name_plural = "Posts"
+
+-> go to views.py
+	from .models import Posts
+	posts = Posts.objects.all()[:10]
+
+
+///Latest Learned
+	->To load static folder (css, js, html, img)
+		- python manage.py collectstatic
+
+
+
+->Github instruction
+	- git init
+	- add .gitignore  in that directory (by searching gitigonre.io and search django copy and paste)
+	- git add --all
+	- git commit -m "initial commit"
+	- git remote add origin <Link to GitHub Repo>     //maps the remote repo link to local git repo
+	- git remote -v                                  //this is to verify the link to the remote repo 
+	- git push -u origin master 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
