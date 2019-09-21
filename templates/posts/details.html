@@ -2,9 +2,68 @@
 
 {% block content %}
 <h3 class="center-align red lighten-3">{{post.title}}</h3>
+<p>{{ post.author }}</p>
 
 <div class="container">
     <p>{{post.body}}</p>
+
+    <!-- post -->
+  <section id="post" class="py-4">
+    <div class="container">
+      <a href="{% url 'index' %}" class="btn btn-light mb-4">Back To Index</a>
+      <div class="row">
+        <div class="col-md-9">
+          <!-- Home Main Image -->
+          <img src="{{ post.photo_main.url }}" alt="" class="img-main img-fluid mb-3">
+          <!-- Thumbnails -->
+          <div class="row mb-5 thumbs">
+            {% if post.photo_1 %}
+            <div class="col-md-2">
+              <a href="{{ post.photo_1.url }}" data-lightbox="home-images">
+                <img src="{{ post.photo_1.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+            {% if post.photo_2 %}
+            <div class="col-md-2">
+              <a href="{{ post.photo_2.url }}" data-lightbox="home-images">
+                <img src="{{ post.photo_2.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+            {% if post.photo_3 %}
+            <div class="col-md-2">
+              <a href="{{ post.photo_3.url }}" data-lightbox="home-images">
+                <img src="{{ post.photo_3.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+            {% if post.photo_4 %}
+            <div class="col-md-2">
+              <a href="{{ post.photo_4.url }}" data-lightbox="home-images">
+                <img src="{{ post.photo_4.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+            {% if post.photo_5 %}
+            <div class="col-md-2">
+              <a href="{{ post.photo_5.url }}" data-lightbox="home-images">
+                <img src="{{ post.photo_5.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+            {% if post.photo_6 %}
+            <div class="col-md-2">
+              <a href="{{ post.photo_6.url }}" data-lightbox="home-images">
+                <img src="{{ post.photo_6.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 <footer>{{post.created_at}}</footer>
+
 {% endblock %}

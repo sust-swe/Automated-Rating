@@ -4,6 +4,14 @@
 
     <div class="create-post">
         <h2>Create New Post</h2>
+
+        <form class="site-form" action="{% url 'create' %}" method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {{ form }}
+
+            <input type="submit" value="Post">
+        </form>
     </div>
 
 {% endblock %}

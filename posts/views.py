@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 from .models import Posts
+from . import forms
 
 # Create your views here.
 
@@ -32,5 +33,18 @@ def details(request, id):
 
 @login_required(login_url="login")
 def create(request):
-    return render(request, 'posts/create.html')
+    if request.method == 'POST':
+        form = forms.CreatePost(request.POST, request.FILES)   #request.files for image
+        if form.is_valid():
+            # save to db
+            instance = form.save(commit = False)
+            instance.author = request.user
+            instance.save()
+            return redirect('index')
 
+    else :
+        form = forms.CreatePost()
+        context = {
+            'form' : form
+        }
+        return render(request, 'posts/create.html', context)
