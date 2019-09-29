@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="create-comment">
+  <h4>Comment</h4>
+
+  <form class="site-form" action="/posts/details/{{post.id}}/comment/" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form }}
+
+    <input type="submit" value="Post">
+  </form>
+</div>
+
+{% endblock %}

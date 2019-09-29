@@ -5,9 +5,9 @@
 <p>{{ post.author }}</p>
 
 <div class="container">
-    <p>{{post.body}}</p>
+  <p>{{post.body}}</p>
 
-    <!-- post -->
+  <!-- post -->
   <section id="post" class="py-4">
     <div class="container">
       <a href="{% url 'index' %}" class="btn btn-light mb-4">Back To Index</a>
@@ -59,11 +59,42 @@
               </a>
             </div>
             {% endif %}
+          </div>
         </div>
       </div>
-    </div>
   </section>
-</div>
-<footer>{{post.created_at}}</footer>
 
-{% endblock %}
+  <br>
+  <br>
+
+  <div class="create-comment">
+    <h4>Comment</h4>
+
+    <form class="site-form" action="/posts/details/{{post.id}}/" method="POST" enctype="multipart/form-data">
+
+      {% csrf_token %}
+      {{ form }}
+
+      <a class="btn btn-default" href=""><span class="glyphicon glyphicon-ok"></span></a>
+
+      <input type="submit" value="Comment">
+    </form>
+  </div>
+
+  <br>
+  <br>
+
+  <h3 class="center-align red lighten-3">ALL Comments - </h3>
+
+  <ul class="collection">
+    {% for comment in comments %}
+    <div class="container">
+      <li class="collection-item"><a href=""> {{comment.text}} </a></li>
+      <p>{{ comment.author }}</p>
+    </div>
+    {% endfor %}
+  </ul>
+
+  <footer>{{post.created_at}}</footer>
+
+  {% endblock %}
