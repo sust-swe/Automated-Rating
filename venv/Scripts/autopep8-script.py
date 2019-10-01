@@ -1,4 +1,4 @@
-#!c:\users\tamim\pyprojects\automatedrating\venv\scripts\python.exe
+#!c:\Users\tamim\PyProjects\AutomatedRating\venv\Scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'autopep8==1.4.4','console_scripts','autopep8'
 __requires__ = 'autopep8==1.4.4'
 import re

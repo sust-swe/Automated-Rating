@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
+from django.contrib.messages import constants as messages
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -82,10 +83,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'automatedRating',
-        'USER' : 'root',
-        'Password' : '',
-        'HOST' : 'localhost',
-        'PORT' : ''
+        'USER': 'root',
+        'Password': '',
+        'HOST': 'localhost',
+        'PORT': ''
     }
 }
 
@@ -129,7 +130,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'AutomatedRating/static')
+    os.path.join(BASE_DIR, 'automatedRating/static')
 ]
 
 
@@ -138,7 +139,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # Django Messages library
-from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.INFO: 'danger',
 }

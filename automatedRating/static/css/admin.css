@@ -1,0 +1,19 @@
+#header {
+    height: 45px;
+    background: #10284e;
+    color: #ffc;
+}
+
+#branding h1 {
+    color: aqua;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    margin: 0;
+    padding: 8px;
+    font-weight: 400;
+    font-size: 13px;
+    text-align: left;
+    background: mediumseagreen;
+    color: #fff;
+}
