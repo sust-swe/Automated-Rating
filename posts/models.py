@@ -21,7 +21,11 @@ class PostCategory(models.Model):
 class ItemsList(models.Model):
     ItemsList_name = models.CharField(max_length=200)
 
-    item_category = models.ForeignKey(PostCategory, default=1, verbose_name="Category", on_delete=models.SET_DEFAULT)
+    item_category = models.ForeignKey(PostCategory,
+                                      default=1,
+                                      verbose_name="Category",
+                                      on_delete=models.SET_DEFAULT)
+
     item_summary = models.CharField(max_length=200)
     rating = models.DecimalField(decimal_places=1, max_digits=2)
 
@@ -34,8 +38,16 @@ class ItemsList(models.Model):
 
 
 class Posts(models.Model):
-    author = models.ForeignKey(User, models.SET_NULL, blank=True, null=True,)
-    post_item = models.ForeignKey(ItemsList, default=1, verbose_name="Posts", on_delete=models.SET_DEFAULT)
+    author = models.ForeignKey(User,
+                               models.SET_NULL,
+                               blank=True,
+                               null=True,)
+
+    post_item = models.ForeignKey(ItemsList,
+                                  default=1,
+                                  verbose_name="Posts",
+                                  on_delete=models.SET_DEFAULT)
+
     title = models.CharField(max_length=200)
     slug = models.SlugField()
     body = models.TextField()
