@@ -23,6 +23,18 @@ def index(request):
     return render(request, 'posts/index.html', context)
 
 
+def archives(request):
+
+    posts = Posts.objects.all()[:10]
+
+    context = {
+        'title': 'Recent Posts',
+        'posts': posts
+    }
+
+    return render(request, 'posts/archives.html', context)
+
+
 def details(request, id):
     post = Posts.objects.get(id=id)
     comments = post.comments.all()

@@ -8,7 +8,7 @@
             <nav class="classy-navbar justify-content-between" id="vizewNav">
 
                 <!-- Nav brand -->
-                <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                <a href="index.html" class="nav-brand"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
 
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
@@ -25,8 +25,12 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li class="active"><a href="index.html">Home</a></li>
-                            <li><a href="archive-list.html">Archives</a></li>
+                            <li {% if '/posts/' == request.path %} class="active" {% endif %}><a
+                                    href="{% url 'index' %}">Home</a></li>
+
+                            <li {% if 'archives' in request.path %} class="active" {% endif %}><a
+                                    href="{% url 'archives' %}">Archives</a></li>
+
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="index.html">- Home</a></li>
@@ -39,51 +43,30 @@
                                     <li><a href="login.html">- Login</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Features</a>
-                                <div class="megamenu">
-                                    <ul class="single-mega cn-col-4">
-                                        <li><a href="index.html">- Home</a></li>
-                                        <li><a href="archive-list.html">- Archive List</a></li>
-                                        <li><a href="archive-grid.html">- Archive Grid</a></li>
-                                        <li><a href="single-post.html">- Single Post</a></li>
-                                        <li><a href="video-post.html">- Single Video Post</a></li>
-                                        <li><a href="contact.html">- Contact</a></li>
-                                        <li><a href="typography.html">- Typography</a></li>
-                                        <li><a href="login.html">- Login</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li><a href="index.html">- Home</a></li>
-                                        <li><a href="archive-list.html">- Archive List</a></li>
-                                        <li><a href="archive-grid.html">- Archive Grid</a></li>
-                                        <li><a href="single-post.html">- Single Post</a></li>
-                                        <li><a href="video-post.html">- Single Video Post</a></li>
-                                        <li><a href="contact.html">- Contact</a></li>
-                                        <li><a href="typography.html">- Typography</a></li>
-                                        <li><a href="login.html">- Login</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li><a href="index.html">- Home</a></li>
-                                        <li><a href="archive-list.html">- Archive List</a></li>
-                                        <li><a href="archive-grid.html">- Archive Grid</a></li>
-                                        <li><a href="single-post.html">- Single Post</a></li>
-                                        <li><a href="video-post.html">- Single Video Post</a></li>
-                                        <li><a href="contact.html">- Contact</a></li>
-                                        <li><a href="typography.html">- Typography</a></li>
-                                        <li><a href="login.html">- Login</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li><a href="index.html">- Home</a></li>
-                                        <li><a href="archive-list.html">- Archive List</a></li>
-                                        <li><a href="archive-grid.html">- Archive Grid</a></li>
-                                        <li><a href="single-post.html">- Single Post</a></li>
-                                        <li><a href="video-post.html">- Single Video Post</a></li>
-                                        <li><a href="contact.html">- Contact</a></li>
-                                        <li><a href="typography.html">- Typography</a></li>
-                                        <li><a href="login.html">- Login</a></li>
-                                    </ul>
-                                </div>
-                            </li>
                             <li><a href="contact.html">Contact</a></li>
+
+                            {% if user.is_authenticated %}
+                            <!-- Log Out -->
+                            <li>
+                                <a href="javascript:{document.getElementById('logout').submit()}">
+                                    Logout
+                                </a>
+                                <form action="{% url 'logout' %}" method="POST" id="logout">
+                                    {% csrf_token %}
+                                    <input type="hidden">
+                                </form>
+                            </li>
+
+                            {% else %}
+                            <li {% if 'register' in request.path %} class="active" {% endif %}>
+                                <a href="{% url 'register' %}">Register</a>
+                            </li>
+                            <li {% if 'login' in request.path %} class="active"{% endif %}>
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            </li>
+
+                            {% endif %}
+
                         </ul>
                     </div>
                     <!-- Nav End -->
