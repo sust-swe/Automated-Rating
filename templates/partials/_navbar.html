@@ -1,85 +1,94 @@
 {% load static %}
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-    <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}">
-            <img src="{% static '/img/logo.png' %}" class="logo" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <ul class="navbar-nav">
-                <li 
-                    {% if '/' == request.path %}
-                    class="nav-item active mr-3"
-                    {% else %}
-                    class="nav-item mr-3"
-                    {% endif %}
-                >
-                    <a class="nav-link" href="{% url 'index' %}">Home</a>
-                </li>
-                <li 
-                    {% if 'about' in request.path %}
-                    class="nav-item active mr-3"
-                    {% else %}
-                    class="nav-item mr-3"
-                    {% endif %}
-                >
-                    <a class="nav-link" href="{% url 'about' %}">About</a>
-                </li>
-                
-            </ul>
+<!-- Navbar Area -->
+<div class="vizew-main-menu" id="sticker">
+    <div class="classy-nav-container breakpoint-off">
+        <div class="container">
 
-            <ul class="navbar-nav ml-auto">
-                {% if user.is_authenticated %}
-                    <li 
-                    {% if 'dashboard' in request.path %}
-                    class="nav-item active mr-3"
-                    {% else %}
-                    class="nav-item mr-3"
-                    {% endif %}
-                    >
-                    <a class="nav-link" href="{% url 'dashboard' %}">
-                    <i class="fas fa-user"></i> Welcome {{ user.first_name }}</a>
-                    </li>
-                    <!-- Log Out -->
-                    <li class="nav-item mr-3">
-                        <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </a>
-                        <form action="{% url 'logout' %}" method="POST" id="logout" >
-                            {% csrf_token %}
-                            <input type="hidden">
-                        </form>
-                    </li>
+            <!-- Menu -->
+            <nav class="classy-navbar justify-content-between" id="vizewNav">
 
-                {% else %}
-                <li 
-                    {% if 'register' in request.path %}
-                    class="nav-item active mr-3"
-                    {% else %}
-                    class="nav-item mr-3"
-                    {% endif %}
-                >
-                    <a class="nav-link" href="{% url 'register' %}">
-                        <i class="fas fa-user-plus"></i> Register</a>
-                </li>
-                <li 
-                    {% if 'login' in request.path %}
-                    class="nav-item active mr-3"
-                    {% else %}
-                    class="nav-item mr-3"
-                    {% endif %}
-                >
-                    <a class="nav-link" href="{% url 'login' %}">
-                        <i class="fas fa-sign-in-alt"></i>
+                <!-- Nav brand -->
+                <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
 
-                        Login</a>
-                </li>
+                <!-- Navbar Toggler -->
+                <div class="classy-navbar-toggler">
+                    <span class="navbarToggler"><span></span><span></span><span></span></span>
+                </div>
 
-            {% endif %}
-            </ul>
+                <div class="classy-menu">
+
+                    <!-- Close Button -->
+                    <div class="classycloseIcon">
+                        <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                    </div>
+
+                    <!-- Nav Start -->
+                    <div class="classynav">
+                        <ul>
+                            <li class="active"><a href="index.html">Home</a></li>
+                            <li><a href="archive-list.html">Archives</a></li>
+                            <li><a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li><a href="index.html">- Home</a></li>
+                                    <li><a href="archive-list.html">- Archive List</a></li>
+                                    <li><a href="archive-grid.html">- Archive Grid</a></li>
+                                    <li><a href="single-post.html">- Single Post</a></li>
+                                    <li><a href="video-post.html">- Single Video Post</a></li>
+                                    <li><a href="contact.html">- Contact</a></li>
+                                    <li><a href="typography.html">- Typography</a></li>
+                                    <li><a href="login.html">- Login</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Features</a>
+                                <div class="megamenu">
+                                    <ul class="single-mega cn-col-4">
+                                        <li><a href="index.html">- Home</a></li>
+                                        <li><a href="archive-list.html">- Archive List</a></li>
+                                        <li><a href="archive-grid.html">- Archive Grid</a></li>
+                                        <li><a href="single-post.html">- Single Post</a></li>
+                                        <li><a href="video-post.html">- Single Video Post</a></li>
+                                        <li><a href="contact.html">- Contact</a></li>
+                                        <li><a href="typography.html">- Typography</a></li>
+                                        <li><a href="login.html">- Login</a></li>
+                                    </ul>
+                                    <ul class="single-mega cn-col-4">
+                                        <li><a href="index.html">- Home</a></li>
+                                        <li><a href="archive-list.html">- Archive List</a></li>
+                                        <li><a href="archive-grid.html">- Archive Grid</a></li>
+                                        <li><a href="single-post.html">- Single Post</a></li>
+                                        <li><a href="video-post.html">- Single Video Post</a></li>
+                                        <li><a href="contact.html">- Contact</a></li>
+                                        <li><a href="typography.html">- Typography</a></li>
+                                        <li><a href="login.html">- Login</a></li>
+                                    </ul>
+                                    <ul class="single-mega cn-col-4">
+                                        <li><a href="index.html">- Home</a></li>
+                                        <li><a href="archive-list.html">- Archive List</a></li>
+                                        <li><a href="archive-grid.html">- Archive Grid</a></li>
+                                        <li><a href="single-post.html">- Single Post</a></li>
+                                        <li><a href="video-post.html">- Single Video Post</a></li>
+                                        <li><a href="contact.html">- Contact</a></li>
+                                        <li><a href="typography.html">- Typography</a></li>
+                                        <li><a href="login.html">- Login</a></li>
+                                    </ul>
+                                    <ul class="single-mega cn-col-4">
+                                        <li><a href="index.html">- Home</a></li>
+                                        <li><a href="archive-list.html">- Archive List</a></li>
+                                        <li><a href="archive-grid.html">- Archive Grid</a></li>
+                                        <li><a href="single-post.html">- Single Post</a></li>
+                                        <li><a href="video-post.html">- Single Video Post</a></li>
+                                        <li><a href="contact.html">- Contact</a></li>
+                                        <li><a href="typography.html">- Typography</a></li>
+                                        <li><a href="login.html">- Login</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <!-- Nav End -->
+                </div>
+            </nav>
         </div>
     </div>
-</nav>
+</div>

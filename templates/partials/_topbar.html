@@ -1,32 +1,43 @@
-<!-- Top Bar -->
-<section id="top-bar" class="p-3">
+<!-- Top Header Area -->
+<div class="top-header-area">
     <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <i class="fas fa-phone"></i> (617)-555-5555
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6">
+                <!-- Breaking News Widget -->
+                <div class="breaking-news-area d-flex align-items-center">
+                    <div class="news-title">
+                        <p>Breaking News:</p>
+                    </div>
+                    <div id="breakingNewsTicker" class="ticker">
+                        <ul>
+                            <li><a href="single-post.html">10 Things Amazon Echo Can Do</a></li>
+                            <li><a href="single-post.html">Welcome to Colorlib Family.</a></li>
+                            <li><a href="single-post.html">Boys 'doing well' after Thai</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <i class="fas fa-envelope-open"></i> contact@automatedRating.co
-            </div>
-            <div class="col-md-4">
-                <div class="social text-right">
-                    <a href="#">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fab fa-pinterest"></i>
-                    </a>
+            <div class="col-12 col-md-6">
+                <div class="top-meta-data d-flex align-items-center justify-content-end">
+                    <!-- Top Social Info -->
+                    <div class="top-social-info">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                        <a href="#"><i class="fa fa-youtube-play"></i></a>
+                    </div>
+                    <!-- Top Search Area -->
+                    <div class="top-search-area">
+                        <form action="index.html" method="post">
+                            <input type="search" name="top-search" id="topSearch" placeholder="Search...">
+                            <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                    <!-- Login -->
+                    <a href="login.html" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>

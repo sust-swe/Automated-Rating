@@ -12,7 +12,7 @@ for post in posts:
         if pol == 0:
             rat = 5
         else:
-            rat = 5 + ((pol*10)/2)
+            rat = 5 + ((pol*10)/2) - 0.1
         rat_lst.append(rat)
     post.post_item.rating = mean(rat_lst)
     post.post_item.save()

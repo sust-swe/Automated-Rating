@@ -1,7 +1,8 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 from .models import Posts, Comment
 from . import forms
@@ -37,7 +38,7 @@ def details(request, id):
             instance.author = request.user
             instance.post = post
             instance.save()
-            return redirect('index')
+            return redirect("details", id=post.id)
 
     form = forms.CommentForm()
 
