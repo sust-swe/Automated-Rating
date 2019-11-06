@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Posts, Comment
 from . import forms
@@ -13,11 +14,15 @@ from . import forms
 def index(request):
     # return HttpResponse('hello from posts')
 
-    posts = Posts.objects.all()[:10]
+    posts = Posts.objects.order_by('-created_at')
+
+    paginator = Paginator(posts, 6)
+    page = request.GET.get('page')
+    paged_posts = paginator.get_page(page)
 
     context = {
         'title': 'Recent Posts',
-        'posts': posts
+        'posts': paged_posts
     }
 
     return render(request, 'posts/index.html', context)
@@ -25,11 +30,15 @@ def index(request):
 
 def archives(request):
 
-    posts = Posts.objects.all()[:10]
+    posts = Posts.objects.order_by('-created_at')
+
+    paginator = Paginator(posts, 1)
+    page = request.GET.get('page')
+    paged_posts = paginator.get_page(page)
 
     context = {
         'title': 'Recent Posts',
-        'posts': posts
+        'posts': paged_posts
     }
 
     return render(request, 'posts/archives.html', context)
