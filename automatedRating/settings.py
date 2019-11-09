@@ -142,5 +142,5 @@ MEDIA_URL = '/media/'
 
 # Django Messages library
 MESSAGE_TAGS = {
-    messages.INFO: 'danger',
+    messages.ERROR: 'danger',
 }
