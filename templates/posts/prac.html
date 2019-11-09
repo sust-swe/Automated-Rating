@@ -1,9 +1,15 @@
-{% extends 'base.html' %}
-
-
-{% block content %}
-
-<!-- <h1>Create New Post</h1><br><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create Post</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+  <h1>Create New Post</h1><br><br>
     <form class="container justify-content-centre col-md-6 ">
         
         <div>
@@ -46,41 +52,7 @@
             <button type="submit" class="btn vizew-btn w-100 mt-30">Post</button>
         </div>
         <br><br>
-    </form> -->
-
-<div class="d-flex justify-content-center mt-5">
-    <div class="col-md-5 list-group-item">
-        <h1>Create New Post</h1><br><br>
-        <form class="justify-content-center" action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
-            <table>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <tr><td>        
-                <div>
-                    <button type="submit" class="btn vizew-btn w-100 mt-30">Post</button>
-                </div>
-            </td></tr>
-            
-                </table>
-        </form>
-    </div>
-</div>
-
-
-
-
-
-
-    <!-- <div class="create-post">
-        <h2>Create New Post</h2>
-
-        <form class="site-form" action="{% url 'create' %}" method="post" enctype="multipart/form-data">
-
-            {% csrf_token %}
-            {{ form }}
-
-            <input type="submit" value="Post">
-        </form>
-    </div> -->
-
-{% endblock %}
+    </form>
+        
+</body>
+</html>
