@@ -7,6 +7,7 @@ class CreatePost(forms.ModelForm):
         model = Posts
         fields = "__all__"
         exclude = ('author', 'created_at',)
+    
 
 
 class CommentForm(forms.ModelForm):
