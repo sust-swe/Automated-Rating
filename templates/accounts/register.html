@@ -3,52 +3,71 @@
 {% block title %} - Register To Buy {% endblock %}
 
 {% block content %}
-
-<section id="register" class="bg-light py-5">
+<!-- ##### Breadcrumb Area Start ##### -->
+<div class="vizew-breadcrumb">
     <div class="container">
-      <div class="row">
-        <div class="col-md-6 mx-auto">
-          <div class="card">
-            <div class="card-header bg-primary text-white">
-              <h4>
-                <i class="fas fa-user-plus"></i> Register</h4>
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Register  </li>
+                    </ol>
+                </nav>
             </div>
-            <div class="card-body">
-              <!-- Alerts Messages -->
-              {% include 'partials/_alerts.html' %}
-                <form action="{% url 'register' %}" method="POST">
-                    {% csrf_token %}
-                  <div class="form-group">
-                  <label for="first_name">First Name</label>
-                  <input type="text" name="first_name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                  <label for="last_name">Last Name</label>
-                  <input type="text" name="last_name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                  <label for="username">Username</label>
-                  <input type="text" name="username" class="form-control" required>
-                </div>
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" name="email" class="form-control" required>
-                </div>
-                <div class="form-group">
-                  <label for="password2">Password</label>
-                  <input type="password" name="password" class="form-control" required>
-                </div>
-                <div class="form-group">
-                  <label for="password">Confirm Password</label>
-                  <input type="password" name="password2" class="form-control" required>
-                </div>
-                <input type="submit" value="Register" class="btn btn-secondary btn-block">
-              </form>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </section>
+</div>
+<!-- ##### Breadcrumb Area End ##### -->
+
+<!-- ##### Login Area Start ##### -->
+<div class="vizew-login-area section-padding-80">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+                <div class="login-content">
+                    <!-- Section Title -->
+                    <div class="section-heading">
+                        <h4>Create New Account | Register ! </h4>
+                        <div class="line"></div>
+                    </div>
+
+                    <!-- Alerts Messages -->
+                    {% include 'partials/_alerts.html' %}
+
+                    <form action="{% url 'register' %}" method="POST">
+                          {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="first_name" placeholder="First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="last_name" placeholder="Last Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="User Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="password2" placeholder="Confirm Password" required>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                                <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
+                            </div>
+                        </div>
+                        <button type="submit" value="Register" class="btn vizew-btn w-100 mt-30">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Login Area End ##### -->
 
 {% endblock %}

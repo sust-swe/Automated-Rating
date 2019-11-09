@@ -37,7 +37,7 @@
                     </div>
                     <!-- Login -->
                     <a href="login.html" class="login-btn"><i class="fa fa-user" aria-hidden="true"> </i></a>
-                    <a href="#""><i class="fas fa-sign-out-alt"></i> {{ user }} </a>
+                    <a href="#""> {% if user.is_authenticated %} {{ user }} {% endif %} </a>
                 </div>
             </div>
         </div>
