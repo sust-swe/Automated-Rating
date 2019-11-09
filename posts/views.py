@@ -46,6 +46,7 @@ def archives(request):
 
 def details(request, id):
     post = Posts.objects.get(id=id)
+    print(post)
     comments = post.comments.all()
 
     # For Comment Form
