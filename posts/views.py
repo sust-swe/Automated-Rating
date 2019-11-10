@@ -95,3 +95,7 @@ def create(request):
             'form': form
         }
         return render(request, 'posts/create.html', context)
+
+
+def search(request):
+    return render(request, 'posts/search.html')
