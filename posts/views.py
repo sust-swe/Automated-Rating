@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Posts, Comment
+from .choices import rating_choices, category_choices, postcriteria_choices
 from . import forms
 
 # Create your views here.
@@ -22,7 +23,10 @@ def index(request):
 
     context = {
         'title': 'Recent Posts',
-        'posts': paged_posts
+        'rating_choices': rating_choices,
+        'category_choices': category_choices,
+        'postcriteria_choices': postcriteria_choices,
+        'posts': paged_posts,
     }
 
     return render(request, 'posts/index.html', context)
