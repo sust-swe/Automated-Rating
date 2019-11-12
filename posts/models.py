@@ -20,7 +20,6 @@ class PostCategory(models.Model):
 
 class ItemsList(models.Model):
     ItemsList_name = models.CharField(max_length=200)
-
     item_category = models.ForeignKey(PostCategory,
                                       default=1,
                                       verbose_name="Category",
