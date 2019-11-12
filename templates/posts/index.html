@@ -3,6 +3,72 @@
 {% block content %}
 <h3 class="center-align red lighten-3">{{post.title}}</h3>
 
+<!-- Alerts Messages -->
+{% include 'partials/_alerts.html' %}
+
+<!-- Showcase for Search Box -->
+<section id="showcase">
+    <div class="container text-center">
+      <div class="home-search p-5">
+        <div class="overlay p-5">
+          <h1 class="display-4 mb-4">
+            Advanced Searching !!!
+          </h1>
+          <p class="lead">You can search easily almost anython with this toolbox. Type any keywords
+              or select any criteria or any category or any ratings and press search !!!
+          </p>
+          <div class="search">
+            <form action="{% url 'search' %}">
+              <!-- Form Row 1 -->
+              <div class="form-row">
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">Keywords</label>
+                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (movie, games, etc)">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">Author</label>
+                  <input type="text" name="author" class="form-control" placeholder="Author">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">Category</label>
+                  <select name="category" class="form-control">
+                    <option selected="true" disabled="disabled">Category (All)</option>
+                    {% for key, value in category_choices.items %}
+                    <option value="{{key}}">{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <!-- Form Row 2 -->
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label class="sr-only">Post Criteria</label>
+                  <select name="postcriteria" class="form-control">
+                    <option selected="true" disabled="disabled">Post Criteria (Any)</option>
+                    {% for key, value in postcriteria_choices.items %}
+                    <option value="{{key}}">{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <select name="rating" class="form-control" id="type">
+                    <option selected="true" disabled="disabled">Min Rating (Any)</option>
+                    {% for key, value in rating_choices.items %}
+                    <option value="{{key}}">{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 <ul class="collection">
     {% for post in posts %}
         <div class="container">

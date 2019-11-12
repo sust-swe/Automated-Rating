@@ -21,12 +21,12 @@ def login(request):
             # for login required funcionality
             if 'next' in request.POST:
                 return redirect(request.POST.get('next'))
-            else :
-                return redirect('dashboard')
+            else:
+                return redirect('index')
         else:
             messages.error(request, 'Login Failed ! Credential Error !')
             return redirect('login')
-    else :
+    else:
         return render(request, 'accounts/login.html')
 
 
@@ -73,7 +73,7 @@ def register(request):
 
 def logout(request):
     if request.method == 'POST':
-        #messages.success(request, "You are now Logged out !")
+        messages.success(request, "You are now Logged out !")
         auth.logout(request)
         return redirect('index')
 
