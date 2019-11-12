@@ -2,22 +2,24 @@
 {% load static %}
 {% block content %}
 
+<div class="container">
+  <h3 style="font-size: 50px;" class="center-align red lighten-3">{{post.title}}</h3>
+  
+  <br>
+  <p style="color: chocolate; font-size: 20px;">{{ post.author }}</p>
+  <br>
+  
+  <h5 style="font-size: 50px;" >{{ post.post_item }}</h5>
+  <br>
+  <h4 style="font-size: 50px;" > Rating :  {{ post.post_item.rating }}</h4>
 
-<h3 class="center-align red lighten-3">{{post.title}}</h3>
-<p>{{ post.author }}</p>
-<h5>{{ post.post_item }}</h5>
-<h4> Rating :  {{ post.post_item.rating }}</h4>
+</div>
 
 <div class="container">
-  <p>{{post.body}}</p>
+  <p style="color: chocolate; font-size: 20px;">{{post.body}}</p>
 
   <!-- post -->
-  <section id="post" class="py-4">
-    <div class="btn btn-light mb-4">
-      <a href="{% url 'index' %}">Back To Index</a>
-    </div>
-  </section>
-
+  
   <!-- Carosel -->
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval=3000>
     <ol class="carousel-indicators">
@@ -58,7 +60,7 @@
   <br>
 
   <div class="create-comment">
-    <h4>Comment</h4>
+    <h4 style="color: rgb(88, 96, 206); font-size: 30px;" >Comment</h4>
 
     <form class="site-form" action="{% url 'details' id=post.id %}" method="POST" enctype="multipart/form-data">
 
@@ -74,16 +76,23 @@
   <br>
   <br>
 
-  <h3 class="center-align red lighten-3">ALL Comments - </h3>
+  <h3 style="color: rgb(88, 96, 206); font-size: 30px;">ALL Comments - </h3>
 
   <ul class="collection">
     {% for comment in comments %}
     <div class="container">
+        <li style="color: rgb(129, 245, 66); font-size: 30px;">{{ comment.author }}</li>
       <li class="collection-item"><a href=""> {{comment.text}} </a></li>
-      <p>{{ comment.author }}</p>
     </div>
     {% endfor %}
   </ul>
+
+  <section id="post" class="py-4">
+    <div class="btn vizew-btn w-100 mt-30">
+      <a href="{% url 'index' %}">Back To Index</a>
+    </div>
+  </section>
+
 
   <footer>{{post.created_at}}</footer>
 
