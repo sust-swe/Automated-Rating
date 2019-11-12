@@ -76,5 +76,11 @@
             <p>{{ post.snippet }}</p>
         </div>
     {% endfor %}
+    {% for post in postd %}
+    <div class="container">
+        <li class="collection-item"><a href="/posts/details/{{post.id}}"> {{post.title}} </a></li>
+        <p>{{ post.snippet }}</p>
+    </div>
+    {% endfor %}
 </ul>
 {% endblock %}

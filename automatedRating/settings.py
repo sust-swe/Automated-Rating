@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'pages',
     'accounts',
     'posts',
+    "friendship",
 ]
 
 MIDDLEWARE = [
