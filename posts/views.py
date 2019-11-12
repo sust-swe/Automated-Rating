@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 
 from .models import Posts, Comment
 from .choices import rating_choices, category_choices, postcriteria_choices
@@ -98,4 +99,54 @@ def create(request):
 
 
 def search(request):
-    return render(request, 'posts/search.html')
+
+    queryset_list = Posts.objects.order_by('-created_at')
+
+    #keywords=avenger&author=fsda&category=Game&postcriteria=mpp&rating=5
+    # Keywords for existing in all fields
+    if 'keywords' in request.GET:
+        keywords = request.GET['keywords']
+        if keywords:
+            queryset_list = queryset_list.filter(Q(title__icontains=keywords) |
+                                                 Q(body__icontains=keywords) |
+                                                 Q(slug__icontains=keywords) |
+                                                 Q(post_item__item_category__category_name=keywords) |
+                                                 Q(post_item__ItemsList_name=keywords) |
+                                                 Q(author__username=keywords) |
+                                                 Q(author__first_name=keywords))
+
+    # Author
+    if 'author' in request.GET:
+        author = request.GET['author']
+        if author:
+            queryset_list = queryset_list.filter(Q(author__username=author) |
+                                                 Q(author__first_name=author))
+
+    #Category
+    if 'category' in request.GET:
+        category = request.GET['category']
+        if category:
+            queryset_list = queryset_list.filter(post_item__item_category__category_name=category)
+    
+    #postcriteria
+    if 'postcriteria' in request.GET:
+        postcriteria = request.GET['postcriteria']
+        if postcriteria:
+            queryset_list = queryset_list.filter(postcriteria = postcriteria)
+
+    #rating for equal or greater number
+    if 'rating' in request.GET:
+        rating = request.GET['rating']
+        if rating:
+            queryset_list = queryset_list.filter(post_item__rating__gte = rating)
+
+    context = {
+        'title': 'Search Results',
+        'rating_choices': rating_choices,
+        'category_choices': category_choices,
+        'postcriteria_choices': postcriteria_choices,
+        'posts': queryset_list,
+        'values': request.GET,
+    }
+
+    return render(request, 'posts/search.html', context)

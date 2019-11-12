@@ -1,6 +1,8 @@
 from .models import PostCategory
 
 rating_choices = {
+    '3': '3.00',
+    '4': '4.00',
     '5': '5.00',
     '6': '6.00',
     '7': '7.00',
