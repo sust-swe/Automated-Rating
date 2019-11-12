@@ -17,6 +17,13 @@ def index(request):
     # return HttpResponse('hello from posts')
 
     posts = Posts.objects.order_by('-created_at')
+    postd = Posts.objects.order_by('-created_at')
+    if request.method =="POST":
+        query = request.POST['q']
+        if query:
+            posts = Posts.objects.filter(title__icontains=query)
+            postd = Posts.objects.filter(body__icontains=query)
+
 
     paginator = Paginator(posts, 6)
     page = request.GET.get('page')
@@ -28,6 +35,7 @@ def index(request):
         'category_choices': category_choices,
         'postcriteria_choices': postcriteria_choices,
         'posts': paged_posts,
+        'postd':postd
     }
 
     return render(request, 'posts/index.html', context)

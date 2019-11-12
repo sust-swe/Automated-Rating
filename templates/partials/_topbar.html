@@ -30,14 +30,16 @@
                     </div>
                     <!-- Top Search Area -->
                     <div class="top-search-area">
-                        <form action="index.html" method="post">
-                            <input type="search" name="top-search" id="topSearch" placeholder="Search...">
-                            <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
-                        </form>
+                        
+                        <form action="{% url 'index' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="search" id="topSearch" placeholder="Search" name="q">
+                                <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+                              </form>
                     </div>
                     <!-- Login -->
                     <a href="login.html" class="login-btn"><i class="fa fa-user" aria-hidden="true"> </i></a>
-                    <a href="#""> {% if user.is_authenticated %} {{ user }} {% endif %} </a>
+                    <a href="#"> {% if user.is_authenticated %} {{ user }} {% endif %} </a>
                 </div>
             </div>
         </div>
