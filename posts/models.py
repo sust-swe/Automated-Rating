@@ -50,6 +50,11 @@ class Posts(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField()
     body = models.TextField()
+
+    likes = models.ManyToManyField(User,
+                                   blank=True,
+                                   related_name='likes')
+
     photo_main = models.ImageField(upload_to='photos/%Y/%m/%d/')
     photo_1 = models.ImageField(
         upload_to='photos/%Y/%m/%d/', default='', blank=True, null=True)
@@ -70,6 +75,10 @@ class Posts(models.Model):
 
     class Meta:
         verbose_name_plural = "Posts"
+
+    # Count total number of likes
+    def total_likes(self):
+        return self.likes.count()
 
     # model method for showing first line of body
     def snippet(self):

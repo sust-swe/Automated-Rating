@@ -1,9 +1,11 @@
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
+from django.template.loader import render_to_string
 
 from .models import Posts, Comment
 from .choices import rating_choices, category_choices, postcriteria_choices
@@ -58,8 +60,11 @@ def archives(request):
 
 def details(request, id):
     post = Posts.objects.get(id=id)
-    print(post)
     comments = post.comments.all()
+
+    is_liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        is_liked = True
 
     # For Comment Form
     if request.method == 'POST':
@@ -79,10 +84,33 @@ def details(request, id):
     context = {
         'post': post,
         'form': form,
-        'comments': comments
+        'comments': comments,
+        'is_liked': is_liked,
     }
 
     return render(request, 'posts/details.html', context)
+
+@login_required(login_url="login")
+def like_post(request):
+    # id = request.POST.get('post_id')
+    id = request.POST.get('id')
+    post = get_object_or_404(Posts, id=id)
+    is_liked = False
+
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+        is_liked = False
+    else:
+        post.likes.add(request.user)
+        is_liked = True
+
+    context = {
+        'post': post,
+        'is_liked': is_liked,
+    }
+    if request.is_ajax():
+        html = render_to_string('posts/like_section.html', context, request=request)
+        return JsonResponse({'form': html})
 
 
 @login_required(login_url="login")
@@ -106,4 +134,54 @@ def create(request):
 
 
 def search(request):
-    return render(request, 'posts/search.html')
+
+    queryset_list = Posts.objects.order_by('-created_at')
+
+    #keywords=avenger&author=fsda&category=Game&postcriteria=mpp&rating=5
+    # Keywords for existing in all fields
+    if 'keywords' in request.GET:
+        keywords = request.GET['keywords']
+        if keywords:
+            queryset_list = queryset_list.filter(Q(title__icontains=keywords) |
+                                                 Q(body__icontains=keywords) |
+                                                 Q(slug__icontains=keywords) |
+                                                 Q(post_item__item_category__category_name=keywords) |
+                                                 Q(post_item__ItemsList_name=keywords) |
+                                                 Q(author__username=keywords) |
+                                                 Q(author__first_name=keywords))
+
+    # Author
+    if 'author' in request.GET:
+        author = request.GET['author']
+        if author:
+            queryset_list = queryset_list.filter(Q(author__username=author) |
+                                                 Q(author__first_name=author))
+
+    #Category
+    if 'category' in request.GET:
+        category = request.GET['category']
+        if category:
+            queryset_list = queryset_list.filter(post_item__item_category__category_name=category)
+    
+    #postcriteria
+    if 'postcriteria' in request.GET:
+        postcriteria = request.GET['postcriteria']
+        if postcriteria:
+            queryset_list = queryset_list.filter(postcriteria = postcriteria)
+
+    #rating for equal or greater number
+    if 'rating' in request.GET:
+        rating = request.GET['rating']
+        if rating:
+            queryset_list = queryset_list.filter(post_item__rating__gte = rating)
+
+    context = {
+        'title': 'Search Results',
+        'rating_choices': rating_choices,
+        'category_choices': category_choices,
+        'postcriteria_choices': postcriteria_choices,
+        'posts': queryset_list,
+        'values': request.GET,
+    }
+
+    return render(request, 'posts/search.html', context)
