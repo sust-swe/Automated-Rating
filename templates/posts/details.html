@@ -2,103 +2,281 @@
 {% load static %}
 {% block content %}
 
-<div class="container">
-  <h3 style="font-size: 50px;" class="center-align red lighten-3">{{post.title}}</h3>
-  
-  <br>
-  <p style="color: chocolate; font-size: 20px;">{{ post.author }}</p>
-  <br>
-  
-  <h5 style="font-size: 50px;" >{{ post.post_item }}</h5>
-  <br>
-  <h4 style="font-size: 50px;" > Rating :  {{ post.post_item.rating }}</h4>
-
+<!-- ##### Breadcrumb Area Start ##### -->
+<div class="vizew-breadcrumb">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}"><i class="fa fa-home" aria-hidden="true"></i>
+                Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'archives' %}">Archives</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Reunification of migrant toddlers</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
 </div>
+<!-- ##### Breadcrumb Area End ##### -->
 
-<!-- Like Section Separated to use Ajax -->
-<div id="like-section" >
-  {% include 'posts/like_section.html' %}
-</div>
+<!-- ##### Pager Area Start ##### -->
+<div class="vizew-pager-area">
+  <div class="vizew-pager-prev">
+    <p>PREVIOUS ARTICLE</p>
 
-<div class="container">
-  <p style="color: chocolate; font-size: 20px;">{{post.body}}</p>
-
-  <!-- post -->
-  
-  <!-- Carosel -->
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval=3000>
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-          <img class="d-block w-100" style="height: 500px;width: 70%;" src="{{ post.photo_main.url }}" alt="First slide">
+    <!-- Single Feature Post -->
+    <div class="single-feature-post video-post bg-img pager-article">
+      <img src="{{ prev_post.photo_main.url }}" alt="">
+      <!-- Post Content -->
+      <div class="post-content">
+        <a href="#" class="post-cata cata-sm cata-success">{{ prev_post.post_item.item_category }}</a>
+        <a href="#" class="post-cata cata-sm cata-primary">{{ prev_post.post_item }}</a>
+        <a href="#" class="post-cata cata-sm cata-danger">{{ prev_post.post_item.rating }}</a>
+        <a href="/posts/details/{{prev_post.id}}" class="post-title">{{ prev_post.title }}</a>
+        <div class="post-meta d-flex">
+          <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{ prev_post.comments.count }}</a>
+          <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 12</a>
+          <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ prev_post.total_likes }}</a>
         </div>
-      <div class="carousel-item">
-        {% if post.photo_1 %}
-          <img class="d-block w-100" style="height: 500px;width: 70%;" src="{{ post.photo_1.url }}" alt="Second slide">
-        {%else %}
-          <img class="d-block w-100" style="height: 500px;width: 70%;" src='http://www.radiationreport.com/wp-content/uploads/2013/08/no-preview.jpg' alt="Second slide">
-        {% endif %}
-      </div>
-      <div class="carousel-item">
-        {% if post.photo_2 %}
-          <img class="d-block w-100" style="height: 500px;width: 70%;" src="{{ post.photo_2.url }}" alt="Third slide">
-        {%else %}
-          <img class="d-block w-100" style="height: 500px;width: 70%;" src='http://www.radiationreport.com/wp-content/uploads/2013/08/no-preview.jpg' alt="Third slide">
-        {% endif %}
       </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
   </div>
 
-  <br>
-  <br>
+  <div class="vizew-pager-next">
+    <p>NEXT ARTICLE</p>
 
-  <div class="create-comment">
-    <h4 style="color: rgb(88, 96, 206); font-size: 30px;" >Comment</h4>
-
-    <form class="site-form" action="{% url 'details' id=post.id %}" method="POST" enctype="multipart/form-data">
-
-      {% csrf_token %}
-      {{ form }}
-
-      <a class="btn btn-default" href=""><span class="glyphicon glyphicon-ok"></span></a>
-
-      <input type="submit" value="Comment">
-    </form>
+    <!-- Single Feature Post -->
+    <div class="single-feature-post video-post bg-img pager-article">
+        <img src="{{ next_post.photo_main.url }}" alt="">
+      <!-- Post Content -->
+      <div class="post-content">
+        <a href="#" class="post-cata cata-sm cata-success">{{ next_post.post_item }}</a>
+        <a href="#" class="post-cata cata-sm cata-primary">{{ next_post.post_item }}</a>
+        <a href="#" class="post-cata cata-sm cata-danger">{{ next_post.post_item.rating }}</a>
+        <a href="/posts/details/{{next_post.id}}" class="post-title">{{ next_post.title }}</a>
+        <div class="post-meta d-flex">
+          <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>  {{ next_post.comments.count }}</a>
+          <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 15</a>
+          <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ next_post.total_likes }}</a>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <br>
-  <br>
-
-  <h3 style="color: rgb(88, 96, 206); font-size: 30px;">ALL Comments - </h3>
-
-  <ul class="collection">
-    {% for comment in comments %}
+</div>
+<!-- ##### Pager Area End ##### -->
+<!-- ##### Post Details Area Start ##### -->
+<section class="post-details-area mb-80">
     <div class="container">
-        <li style="color: rgb(129, 245, 66); font-size: 30px;">{{ comment.author }}</li>
-      <li class="collection-item"><a href=""> {{comment.text}} </a></li>
+      <div class="row">
+        <div class="col-12">
+          <div class="post-details-thumb mb-50 carousel slide" id="carouselExampleIndicators" data-ride="carousel"
+            data-interval=2000>
+            <!-- Carosel -->
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              {% if post.photo_1 %} <li data-target="#carouselExampleIndicators" data-slide-to="1"></li> {% endif %}
+              {% if post.photo_2 %} <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> {% endif %}
+              {% if post.photo_3 %} <li data-target="#carouselExampleIndicators" data-slide-to="3"></li> {% endif %}
+              {% if post.photo_4 %} <li data-target="#carouselExampleIndicators" data-slide-to="4"></li> {% endif %}
+              {% if post.photo_5 %} <li data-target="#carouselExampleIndicators" data-slide-to="5"></li> {% endif %}
+              {% if post.photo_6 %} <li data-target="#carouselExampleIndicators" data-slide-to="6"></li> {% endif %}
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100" style="height: 500px;width: 70%;" src="{{ post.photo_main.url }}"
+                  alt="First slide">
+              </div>
+              {% if post.photo_1 %}
+              <div class="carousel-item">
+                <img class="d-block w-100" style="height: 500px;width: 70%;" src="{{ post.photo_1.url }}"
+                  alt="Second slide">
+              </div>
+              {% endif %}
+              {% if post.photo_2 %}
+              <div class="carousel-item">
+                <img class="d-block w-100" style="height: 500px;width: 70%;" src="{{ post.photo_2.url }}"
+                  alt="Third slide">
+              </div>
+              {% endif %}
+              {% if post.photo_3 %}
+              <div class="carousel-item">
+                <img class="d-block w-100" style="height: 500px;width: 70%;" src="{{ post.photo_3.url }}"
+                  alt="Fourth slide">
+              </div>
+              {% endif %}
+              {% if post.photo_4 %}
+              <div class="carousel-item">
+                <img class="d-block w-100" style="height: 500px;width: 70%;" src="{{ post.photo_4.url }}"
+                  alt="Five slide">
+              </div>
+              {% endif %}
+              {% if post.photo_5 %}
+              <div class="carousel-item">
+                <img class="d-block w-100" style="height: 500px;width: 70%;" src="{{ post.photo_5.url }}" alt="Six slide">
+              </div>
+              {% endif %}
+              {% if post.photo_6 %}
+              <div class="carousel-item">
+                <img class="d-block w-100" style="height: 500px;width: 70%;" src="{{ post.photo_6.url }}"
+                  alt="Seven slide">
+              </div>
+              {% endif %}
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row justify-content-center">
+        <!-- Post Details Content Area -->
+        <div class="col-12 col-lg-8 col-xl-7">
+          <div class="post-details-content">
+            <!-- Blog Content -->
+            <div class="blog-content">
+              <!-- Post Content -->
+            <div class="post-content mt-0">
+                <a href="#" class="post-cata cata-xl cata-success">{{ post.post_item.item_category }}</a>
+                <a href="#" class="post-cata cata-xl cata-primary">{{ post.post_item }}</a>
+                <a href="#" class="post-cata cata-xl cata-danger">{{ post.post_item.rating }}</a>
+                <a href="single-post.html" class="post-title mb-2">{{ post.title }}</a>
+  
+                <div class="d-flex justify-content-between mb-30">
+                  <div class="post-meta d-flex align-items-center">
+                    <a href="#" class="post-author">By {{ post.author }}</a>
+                    <i class="fa fa-circle" aria-hidden="true"></i>
+                    <a href="#" class="post-date">{{post.created_at}}</a>
+                  </div>
+                  <div class="post-meta d-flex">
+                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>  <span class="counter">{{ post.comments.count }}</span></a>
+                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i>  <span class="counter">22</span></a>
+                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span class="counter">{{ post.total_likes }}</span></a>
+                  </div>
+                </div>
+              </div>
+  
+              <p>{{ post.body }}</p>
+  
+              <!-- Post Author -->
+              <div class="vizew-post-author d-flex align-items-center py-5">
+                <div class="post-author-thumb">
+                  <img src="{% static 'img/bg-img/30.jpg'%}" alt="">
+                </div>
+                <div class="post-author-desc pl-4">
+                  <a href="#" class="author-name">Calantha Flower</a>
+                  <p>Hello! My name is Nicolas Sarkozy. I’m a web designer and front-end web developer with over fifteen
+                    years of professional.</p>
+                  <div class="post-author-social-info">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Comment Area Start -->
+              <div class="comment_area clearfix mb-50">
+  
+                <!-- Section Title -->
+                <div class="section-heading style-2">
+                  <h4>Comment</h4>
+                  <div class="line"></div>
+                </div>
+  
+                <ul>
+                  {% for comment in comments %}
+                  <!-- Single Comment Area -->
+                  <li class="single_comment_area">
+                    <!-- Comment Content -->
+                    <div class="comment-content d-flex">
+                      <!-- Comment Author -->
+                      <div class="comment-author">
+                        <img src="{% static 'img/bg-img/33.jpg' %}" alt="author">
+                      </div>
+                      <!-- Comment Meta -->
+                      <div class="comment-meta">
+                        <a href="#" class="comment-date">{{ comment.created_date }}</a>
+                        <h6>{{ comment.author }}</h6>
+                        <p>{{ comment.text }}</p>
+                      </div>
+                    </div>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+  
+              <!-- Post A Comment Area -->
+              <div class="post-a-comment-area">
+  
+                <!-- Section Title -->
+                <div class="section-heading style-2">
+                  <h4>Leave a reply</h4>
+                  <div class="line"></div>
+                </div>
+  
+                <!-- Reply Form -->
+                <div class="contact-form-area">
+                    <form class="form-site" action="{% url 'details' id=post.id %}" method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}
+                    {{ form }}
+              
+                    <a class="btn btn-default" href=""><span class="glyphicon glyphicon-ok"></span></a>
+              
+                    <input type="submit" value="Comment">
+                  </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Widget -->
+      <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+        <div class="sidebar-area">
+
+          <!-- ***** Single Widget ***** -->
+          <div class="single-widget share-post-widget mb-50">
+            <p>Share This Post</p>
+            <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
+            <a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
+            <a href="#" class="google"><i class="fa fa-google" aria-hidden="true"></i> Google+</a>
+          </div>
+
+          <!-- ***** Single Widget ***** -->
+          <div class="single-widget p-0 author-widget">
+            <div class="p-4">
+              <img class="author-avatar" src="{% static 'img/bg-img/30.jpg' %}" alt="">
+              <a href="#" class="author-name">{{ post.author.first_name }}</a>
+              <div class="author-social-info">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-pinterest"></i></a>
+              </div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+            </div>
+
+            <div class="authors--meta-data d-flex">
+              <p>Posted<span class="counter">{{ post.author.posted.count }}</span></p>
+              <p>Likes<span class="counter">{{ post.author.likes.count }}</span></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
-    {% endfor %}
-  </ul>
+  </div>
+</section>
+<!-- ##### Post Details Area End ##### -->
 
-  <section id="post" class="py-4">
-    <div class="btn vizew-btn w-100 mt-30">
-      <a href="{% url 'index' %}">Back To Index</a>
-    </div>
-  </section>
-
-
-  <footer>{{post.created_at}}</footer>
-
-  {% endblock %}
+{% endblock %}
