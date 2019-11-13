@@ -36,49 +36,55 @@
                     </div>
                     <!-- View Options -->
                     <div class="view-options">
-                        <a href="{% url 'archives_grid' %}"><i class="fa fa-th-large" aria-hidden="true"></i></a> 
-                        <a href="{% url 'archives' %}" class="active"><i class="fa fa-list-ul" aria-hidden="true"></i></a>
+                        <a href="{% url 'archives_grid' %}" class="active" ><i class="fa fa-th-large" aria-hidden="true"></i></a> 
+                        <a href="{% url 'archives' %}"><i class="fa fa-list-ul" aria-hidden="true"></i></a>
                     </div>
                 </div>
+
+                <div class ="row">
+                        {% for post in posts %}
+                        <!-- Single Blog Post -->
+                        <div class="col-12 col-md-6">
+                            <div class="single-post-area style-2">
+                                        <div class="row align-items-center">
+                                            <div class="col-12 col-md-6">
+                                                <!-- Post Thumbnail -->
+                                                <div class="post-thumbnail">
+                                                    <img src="{{ post.photo_main.url }}" alt="">
+                    
+                                                    <!-- Video Duration 
+                                                    <span class="video-duration">05.03</span> -->
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <!-- Post Content -->
+                                                <div class="post-content mt-0">
+                                                    <a href="#" class="post-cata cata-sm cata-success">{{ post.post_item.item_category }}</a>
+                                                    <a href="/posts/details/{{post.id}}" class="post-title mb-2">{{ post.post_item }}</a>
+                                                    <div class="post-meta d-flex align-items-center mb-2">
+                                                        <a href="#" class="post-author">By {{ post.author }}</a>
+                                                        <i class="fa fa-circle" aria-hidden="true"></i>
+                                                        <a href="#" class="post-date">{{ post.created_at | timesince}} ago</a>
+                                                    </div>
+                                                    <p class="mb-2">{{ post.snippet }}</p>
+                                                    <div class="post-meta d-flex">
+                                                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 32</a>
+                                                        <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 42</a>
+                                                        <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 7</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        {% endfor%}
+                        
+                    </div>
 
 
                                 
                 
-                <!-- Single Post Area -->
-                {% for post in posts %}
-                <div class="single-post-area style-2">
-                    <div class="row align-items-center">
-                        <div class="col-12 col-md-6">
-                            <!-- Post Thumbnail -->
-                            <div class="post-thumbnail">
-                                <img src="{{ post.photo_main.url }}" alt="">
-
-                                <!-- Video Duration 
-                                <span class="video-duration">05.03</span> -->
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <!-- Post Content -->
-                            <div class="post-content mt-0">
-                                <a href="#" class="post-cata cata-sm cata-success">{{ post.post_item.item_category }}</a>
-                                <a href="/posts/details/{{post.id}}" class="post-title mb-2">{{ post.post_item }}</a>
-                                <div class="post-meta d-flex align-items-center mb-2">
-                                    <a href="#" class="post-author">By {{ post.author }}</a>
-                                    <i class="fa fa-circle" aria-hidden="true"></i>
-                                    <a href="#" class="post-date">{{ post.created_at | timesince}} ago</a>
-                                </div>
-                                <p class="mb-2">{{ post.snippet }}</p>
-                                <div class="post-meta d-flex">
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 32</a>
-                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 42</a>
-                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 7</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-
+                
                 <!-- Pagination -->
                 <nav class="mt-50">
                     {% if posts.has_other_pages %}
