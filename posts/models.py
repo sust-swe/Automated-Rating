@@ -76,6 +76,10 @@ class Posts(models.Model):
     class Meta:
         verbose_name_plural = "Posts"
 
+    # Count total number of likes
+    def total_likes(self):
+        return self.likes.count()
+
     # model method for showing first line of body
     def snippet(self):
         if len(self.body) > 150:

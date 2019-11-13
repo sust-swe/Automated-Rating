@@ -89,7 +89,7 @@ def details(request, id):
 
     return render(request, 'posts/details.html', context)
 
-
+@login_required(login_url="login")
 def like_post(request):
     id = request.POST.get('post_id')
     post = get_object_or_404(Posts, id=id)
