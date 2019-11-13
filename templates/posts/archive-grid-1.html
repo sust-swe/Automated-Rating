@@ -50,7 +50,7 @@
                                             <div class="col-12 col-md-6">
                                                 <!-- Post Thumbnail -->
                                                 <div class="post-thumbnail">
-                                                    <img src="{{ post.photo_main.url }}" alt="">
+                                                        <a href="/posts/details/{{post.id}}"> <img src="{{ post.photo_main.url }}" alt=""> </a>
                     
                                                     <!-- Video Duration 
                                                     <span class="video-duration">05.03</span> -->
@@ -68,9 +68,9 @@
                                                     </div>
                                                     <p class="mb-2">{{ post.snippet }}</p>
                                                     <div class="post-meta d-flex">
-                                                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 32</a>
-                                                        <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 42</a>
-                                                        <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 7</a>
+                                                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{ post.comments.count }}</a>
+                                                        <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> --42--</a>
+                                                        <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -170,15 +170,15 @@
                         <!-- Single Blog Post -->
                         {% for post in posts %}
                         <div class="single-blog-post d-flex">
-                            <div class="post-thumbnail">
-                                <img src="{{ post.photo_main.url }}" alt="">
+                            <div  class="post-thumbnail">
+                                <a href="/posts/details/{{post.id}}"> <img src="{{ post.photo_main.url }}" alt=""> </a>
                             </div>
                             <div class="post-content">
-                                <a href="single-post.html" class="post-title">{{ post.snippet }}</a>
+                                <a href="/posts/details/{{post.id}}" class="post-title">{{ post.snippet }}</a>
                                 <div class="post-meta d-flex justify-content-between">
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
+                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{ post.comments.count }}</a>
                                     <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 34</a>
-                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
+                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</a>
                                 </div>
                             </div>
                         </div>
