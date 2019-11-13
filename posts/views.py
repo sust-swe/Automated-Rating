@@ -59,8 +59,11 @@ def archives(request):
 
 def details(request, id):
     post = Posts.objects.get(id=id)
-    print(post)
     comments = post.comments.all()
+
+    is_liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        is_liked = True
 
     # For Comment Form
     if request.method == 'POST':
@@ -80,7 +83,8 @@ def details(request, id):
     context = {
         'post': post,
         'form': form,
-        'comments': comments
+        'comments': comments,
+        'is_liked': is_liked,
     }
 
     return render(request, 'posts/details.html', context)
@@ -89,7 +93,13 @@ def details(request, id):
 def like_post(request):
     id = request.POST.get('post_id')
     post = get_object_or_404(Posts, id=id)
-    post.likes.add(request.user)
+    is_liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+        is_liked = False
+    else:
+        post.likes.add(request.user)
+        is_liked = True
     return redirect("details", id=id)
 
 
