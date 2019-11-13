@@ -16,6 +16,13 @@
 </div>
 
 <div class="container">
+  <form action="{% url 'like_post' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-primary"> Like </button>
+  </form>
+</div>
+
+<div class="container">
   <p style="color: chocolate; font-size: 20px;">{{post.body}}</p>
 
   <!-- post -->

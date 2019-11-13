@@ -1,5 +1,5 @@
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
@@ -84,6 +84,13 @@ def details(request, id):
     }
 
     return render(request, 'posts/details.html', context)
+
+
+def like_post(request):
+    id = request.POST.get('post_id')
+    post = get_object_or_404(Posts, id=id)
+    post.likes.add(request.user)
+    return redirect("details", id=id)
 
 
 @login_required(login_url="login")
