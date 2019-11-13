@@ -15,18 +15,9 @@
 
 </div>
 
-<div class="container">
-  <div class="container">
-    <form action="{% url 'like_post' %}" method="post">
-      {% csrf_token %}
-      {% if is_liked %}
-        <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-danger"> Dislike </button>
-      {% else %}
-        <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-primary"> Like </button>
-      {% endif %}
-      <p> {{ post.total_likes }} Like{{ post.total_likes|pluralize }} </p>
-    </form>
-  </div>
+<!-- Like Section Separated to use Ajax -->
+<div id="like-section" >
+  {% include 'posts/like_section.html' %}
 </div>
 
 <div class="container">

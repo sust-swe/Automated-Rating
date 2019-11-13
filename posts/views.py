@@ -1,10 +1,11 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from django.template.loader import render_to_string
 
 from .models import Posts, Comment
 from .choices import rating_choices, category_choices, postcriteria_choices
@@ -91,16 +92,25 @@ def details(request, id):
 
 @login_required(login_url="login")
 def like_post(request):
-    id = request.POST.get('post_id')
+    # id = request.POST.get('post_id')
+    id = request.POST.get('id')
     post = get_object_or_404(Posts, id=id)
     is_liked = False
+
     if post.likes.filter(id=request.user.id).exists():
         post.likes.remove(request.user)
         is_liked = False
     else:
         post.likes.add(request.user)
         is_liked = True
-    return redirect("details", id=id)
+
+    context = {
+        'post': post,
+        'is_liked': is_liked,
+    }
+    if request.is_ajax():
+        html = render_to_string('posts/like_section.html', context, request=request)
+        return JsonResponse({'form': html})
 
 
 @login_required(login_url="login")
