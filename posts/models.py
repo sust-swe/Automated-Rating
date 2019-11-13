@@ -40,7 +40,8 @@ class Posts(models.Model):
     author = models.ForeignKey(User,
                                models.SET_NULL,
                                blank=True,
-                               null=True,)
+                               null=True,
+                               related_name='posted')
 
     post_item = models.ForeignKey(ItemsList,
                                   default=1,
@@ -91,7 +92,7 @@ class Posts(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey('Posts', models.SET_NULL,
                              blank=True, null=True, related_name='comments',)
-    author = models.ForeignKey(User, models.SET_NULL, blank=True, null=True,)
+    author = models.ForeignKey(User, models.SET_NULL, blank=True, null=True, related_name='authcomments')
     text = models.TextField()
     created_date = models.DateTimeField(default=datetime.now)
 
