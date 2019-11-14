@@ -46,7 +46,7 @@ def archives(request):
 
     posts = Posts.objects.order_by('-created_at')
 
-    paginator = Paginator(posts, 1)
+    paginator = Paginator(posts, 4)
     page = request.GET.get('page')
     paged_posts = paginator.get_page(page)
 
@@ -56,6 +56,21 @@ def archives(request):
     }
 
     return render(request, 'posts/archives.html', context)
+
+def archives_grid(request):
+
+    posts = Posts.objects.order_by('-created_at')
+
+    paginator = Paginator(posts, 4)
+    page = request.GET.get('page')
+    paged_posts = paginator.get_page(page)
+
+    context = {
+        'title': 'Recent Posts',
+        'posts': paged_posts
+    }
+
+    return render(request, 'posts/archive-grid-1.html', context)
 
 
 def details(request, id):
