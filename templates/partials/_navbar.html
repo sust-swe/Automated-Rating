@@ -33,9 +33,9 @@
 
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    <li><a href="index.html">- Home</a></li>
-                                    <li><a href="archive-list.html">- Archive List</a></li>
-                                    <li><a href="archive-grid.html">- Archive Grid</a></li>
+                                    <li><a href="{% url 'index' %}">- Home</a></li>
+                                    <li><a href="{% url 'archives' %}">- Archive List</a></li>
+                                    <li><a href="{% url 'archives_grid' %}">- Archive Grid</a></li>
                                     <li><a href="single-post.html">- Single Post</a></li>
                                     <li><a href="video-post.html">- Single Video Post</a></li>
                                     <li><a href="contact.html">- Contact</a></li>
