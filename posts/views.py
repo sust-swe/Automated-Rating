@@ -75,6 +75,8 @@ def archives_grid(request):
 
 def details(request, id):
     post = Posts.objects.get(id=id)
+    next_post = Posts.objects.filter(id__gt=post.id).order_by('id').first()
+    prev_post = Posts.objects.filter(id__gt=post.id).order_by('id').first()
     comments = post.comments.all()
 
     is_liked = False
@@ -98,6 +100,8 @@ def details(request, id):
 
     context = {
         'post': post,
+        'next_post': next_post,
+        'prev_post': prev_post,
         'form': form,
         'comments': comments,
         'is_liked': is_liked,
