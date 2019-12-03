@@ -12,7 +12,7 @@
             <li class="breadcrumb-item"><a href="{% url 'index' %}"><i class="fa fa-home" aria-hidden="true"></i>
                 Home</a></li>
             <li class="breadcrumb-item"><a href="{% url 'archives' %}">Archives</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Reunification of migrant toddlers</li>
+            <li class="breadcrumb-item active" aria-current="page">Posts Details</li>
           </ol>
         </nav>
       </div>
@@ -147,7 +147,7 @@
                 <a href="#" class="post-cata cata-xl cata-success">{{ post.post_item.item_category }}</a>
                 <a href="#" class="post-cata cata-xl cata-primary">{{ post.post_item }}</a>
                 <a href="#" class="post-cata cata-xl cata-danger">{{ post.post_item.rating }}</a>
-                <a href="single-post.html" class="post-title mb-2">{{ post.title }}</a>
+                <a href="#" class="post-title mb-2">{{ post.title }}</a>
   
                 <div class="d-flex justify-content-between mb-30">
                   <div class="post-meta d-flex align-items-center">
@@ -171,15 +171,14 @@
                   <img src="{% static 'img/bg-img/30.jpg'%}" alt="">
                 </div>
                 <div class="post-author-desc pl-4">
-                  <a href="#" class="author-name">Calantha Flower</a>
-                  <p>Hello! My name is Nicolas Sarkozy. I’m a web designer and front-end web developer with over fifteen
+                  <a href="#" class="author-name">{{ post.author }}</a>
+                  <p>Hello! My name is {{ post.author }}. I’m a web designer and front-end web developer with over fifteen
                     years of professional.</p>
                   <div class="post-author-social-info">
                     <a href="#"><i class="fa fa-facebook"></i></a>
                     <a href="#"><i class="fa fa-twitter"></i></a>
                     <a href="#"><i class="fa fa-pinterest"></i></a>
                     <a href="#"><i class="fa fa-linkedin"></i></a>
-                    <a href="#"><i class="fa fa-dribbble"></i></a>
                   </div>
                 </div>
               </div>
@@ -263,9 +262,8 @@
           <!-- ***** Single Widget ***** -->
           <div class="single-widget share-post-widget mb-50">
             <p>Share This Post</p>
-            <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
-            <a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
-            <a href="#" class="google"><i class="fa fa-google" aria-hidden="true"></i> Google+</a>
+            <a href="https://www.facebook.com/" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
+            <a href="https://twitter.com/" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
           </div>
 
           <!-- ***** Single Widget ***** -->
@@ -274,9 +272,9 @@
               <img class="author-avatar" src="{% static 'img/bg-img/30.jpg' %}" alt="">
               <a href="#" class="author-name">{{ post.author.first_name }}</a>
               <div class="author-social-info">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-pinterest"></i></a>
+                <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+                <a href="https://bd.linkedin.com/"><i class="fa fa-pinterest"></i></a>
               </div>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
             </div>

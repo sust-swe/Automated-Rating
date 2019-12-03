@@ -8,7 +8,8 @@
             <nav class="classy-navbar justify-content-between" id="vizewNav">
 
                 <!-- Nav brand -->
-                <a href="index.html" class="nav-brand"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+                <!-- <a href="{% url 'index' %}" class="nav-brand" style="color:whitesmoke;font-style:italic; font-size:x-large;"> Automated Rating </a> -->
+                <a href="{% url 'index' %}" class="nav-brand"><img src="{% static 'img/bg-img/logo2.png' %}" style="height: 100px;width: 100px;"> </a>
 
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
@@ -36,11 +37,8 @@
                                     <li><a href="{% url 'index' %}">- Home</a></li>
                                     <li><a href="{% url 'archives' %}">- Archive List</a></li>
                                     <li><a href="{% url 'archives_grid' %}">- Archive Grid</a></li>
-                                    <li><a href="single-post.html">- Single Post</a></li>
-                                    <li><a href="video-post.html">- Single Video Post</a></li>
-                                    <li><a href="contact.html">- Contact</a></li>
-                                    <li><a href="typography.html">- Typography</a></li>
-                                    <li><a href="login.html">- Login</a></li>
+                                    <li><a href="{% url 'create' %}">- Create new post</a></li>
+                                    <li><a href="javascript:{document.getElementById('logout').submit()}"> Logout</a></li>
                                 </ul>
                             </li>
                             <li><a href="contact.html">Contact</a></li>
