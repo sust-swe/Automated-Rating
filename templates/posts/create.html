@@ -48,7 +48,7 @@
         <br><br>
     </form> -->
 
-<div class="d-flex justify-content-center mt-5">
+<!-- <div class="d-flex justify-content-center mt-5">
     <div class="col-md-5 list-group-item">
         <h1>Create New Post</h1><br><br>
         <form class="justify-content-center" action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
@@ -64,7 +64,7 @@
                 </table>
         </form>
     </div>
-</div>
+</div> -->
 
 
 
@@ -79,13 +79,11 @@
 
 <!-- ##### Pager Area End ##### -->
 <!-- ##### Post Details Area Start ##### -->
+
+<br>
 <section class="post-details-area mb-80">
     <div class="container">
-      <div class="row">
-        <div class="col-12">
-
-        </div>
-      </div>
+      
   
       <div class="row justify-content-center">
         <!-- Post Details Content Area -->
@@ -100,9 +98,9 @@
               <!-- Post Author -->
   
               <!-- Comment Area Start -->
-              <div class="comment_area clearfix mb-50">
+              <!-- <div class="comment_area clearfix mb-50">
   
-                <!-- Section Title -->
+                
                 <div class="section-heading style-2">
                   <h4>Comment</h4>
                   <div class="line"></div>
@@ -115,11 +113,12 @@
   
                 <!-- Section Title -->
                 <div class="section-heading style-2">
-                  <h4>Create a Post</h4>
-                  <div class="line"></div>
+                    
+                    <h4>Create a Post</h4>
+                    <div class="line"></div>
                 </div>
   
-                <!-- Reply Form -->
+                <!-- post Form -->
                 <div class="contact-form-area">
                     <form class="form-site" action="{% url 'create' %}" method="POST" enctype="multipart/form-data"> 
                       <div class="row">
@@ -137,7 +136,7 @@
                     </form>
                 </div>
                 <br>
-                <!-- Reply Form -->
+                <!-- post Form -->
 
               </div>
 
