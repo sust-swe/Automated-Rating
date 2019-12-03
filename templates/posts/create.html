@@ -165,6 +165,101 @@
 
 
 
+<!-- ##### Breadcrumb Area Start ##### -->
+
+<!-- ##### Breadcrumb Area End ##### -->
+
+<!-- ##### Pager Area Start ##### -->
+
+<!-- ##### Pager Area End ##### -->
+<!-- ##### Post Details Area Start ##### -->
+<section class="post-details-area mb-80">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+
+        </div>
+      </div>
+  
+      <div class="row justify-content-center">
+        <!-- Post Details Content Area -->
+        <div class="col-12 col-lg-8 col-xl-7">
+          <div class="post-details-content">
+            <!-- Blog Content -->
+            <div class="blog-content">
+              <!-- Post Content -->
+  
+              <!-- <p>{{ post.body }}</p> -->
+  
+              <!-- Post Author -->
+  
+              <!-- Comment Area Start -->
+              <div class="comment_area clearfix mb-50">
+  
+                <!-- Section Title -->
+                <div class="section-heading style-2">
+                  <h4>Comment</h4>
+                  <div class="line"></div>
+                </div>
+
+              </div>
+  
+              <!-- Post A Comment Area -->
+              <div class="post-a-comment-area">
+  
+                <!-- Section Title -->
+                <div class="section-heading style-2">
+                  <h4>Create a Post</h4>
+                  <div class="line"></div>
+                </div>
+  
+                <!-- Reply Form -->
+                <div class="contact-form-area">
+                    <form class="form-site" action="{% url 'create' %}" method="POST" enctype="multipart/form-data"> 
+                      <div class="row">
+                            <div class="col-12 col-lg-12">
+                              {% csrf_token %}
+                              {{ form.as_p }}
+  
+                              <!-- <input type="email" class="form-control" id="email" placeholder="Your Email*"> -->
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn vizew-btn mt-30" type="submit">Create Post</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <br>
+                <!-- Reply Form -->
+
+              </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Widget -->
+      <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+        <div class="sidebar-area">
+
+          <!-- ***** Single Widget ***** -->
+          <!--  -->
+
+          <!-- ***** Single Widget ***** -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ##### Post Details Area End ##### -->
+
+
+
+
+
+
     <!-- <div class="create-post">
         <h2>Create New Post</h2>
 
