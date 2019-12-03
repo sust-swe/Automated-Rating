@@ -226,16 +226,31 @@
   
                 <!-- Reply Form -->
                 <div class="contact-form-area">
-                    <form class="form-site" action="{% url 'details' id=post.id %}" method="POST" enctype="multipart/form-data">
-                      {% csrf_token %}
-                    {{ form }}
-              
-                    <a class="btn btn-default" href=""><span class="glyphicon glyphicon-ok"></span></a>
-              
-                    <input type="submit" value="Comment">
-                  </form>
+                    <form class="form-site" action="{% url 'details' id=post.id %}" method="POST" enctype="multipart/form-data"> 
+                      <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <input type="text" class="form-control" style="color: cornsilk; " id="name" placeholder="Your Name*">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <input type="email" class="form-control" style="color: cornsilk;" id="email" placeholder="Your Email*">
+                            </div>
+                            <div class="col-12 col-lg-12">
+                              {% csrf_token %}
+                              {{ form }}
+  
+                              <!-- <input type="email" class="form-control" id="email" placeholder="Your Email*"> -->
+                          </div>
+
+                            <div class="col-12">
+                                <button class="btn vizew-btn mt-30" type="submit">Submit Comment</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <br>
+                <!-- Reply Form -->
+
               </div>
-            </div>
 
           </div>
         </div>
