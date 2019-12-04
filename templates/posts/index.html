@@ -69,10 +69,7 @@
     </div>
   </section>
 
-
-
-  
-<ul class="collection">
+  <ul class="collection">
     {% for post in posts %}
         <div class="container">
             <li class="collection-item"><a href="/posts/details/{{post.id}}"> {{post.title}} </a></li>
@@ -86,4 +83,23 @@
     </div>
     {% endfor %}
 </ul>
+  
+  
+<!-- <ul class="collection">
+    {% for post in posts %}
+        <div class="container">
+            <li class="collection-item"><a href="/posts/details/{{post.id}}"> {{post.title}} </a></li>
+            <p>{{ post.snippet }}</p>
+        </div>
+    {% endfor %}
+    {% for post in postd %}
+    <div class="container">
+        <li class="collection-item"><a href="/posts/details/{{post.id}}"> {{post.title}} </a></li>
+        <p>{{ post.snippet }}</p>
+    </div>
+    {% endfor %}
+</ul> -->
+
+
+
 {% endblock %}
