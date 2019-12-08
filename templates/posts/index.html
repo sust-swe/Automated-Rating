@@ -69,21 +69,67 @@
     </div>
   </section>
 
-  <ul class="collection">
-    {% for post in posts %}
-        <div class="container">
-            <li class="collection-item"><a href="/posts/details/{{post.id}}"> {{post.title}} </a></li>
-            <p>{{ post.snippet }}</p>
-        </div>
-    {% endfor %}
-    {% for post in postd %}
+
+  <!-- ##### Hero Area Start ##### -->
+  <section class="hero--area section-padding-80">
     <div class="container">
-        <li class="collection-item"><a href="/posts/details/{{post.id}}"> {{post.title}} </a></li>
-        <p>{{ post.snippet }}</p>
+        <div class="row no-gutters">
+            <div class="col-12 col-md-7 col-lg-8">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="post-1" role="tabpanel" aria-labelledby="post-1-tab">
+                       
+                      <!-- Single Feature Post -->
+                        <div class="single-feature-post video-post bg-img" style="background-image: url();">
+                            <!-- Play Button -->
+                            <!-- <a href="video-post.html" class="btn play-btn"><i class="fa fa-play" aria-hidden="true"></i></a> -->
+
+                            <!-- Post Content -->
+                            <div class="post-content">
+                                <a href="#" class="post-cata">{{ post.post_item.item_category }}</a>
+                                <a href="single-post.html" class="post-title">{{ post.post_item }}</a>
+                                <div class="post-meta d-flex">
+                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 25</a>
+                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 25</a>
+                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 25</a>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-5 col-lg-4">
+                <ul class="nav vizew-nav-tab" role="tablist">
+                  {% for post in posts %}
+                    <li class="nav-item">
+                        <a class="nav-link active" id="post-1-tab" data-toggle="pill" href="/posts/details/{{post.id}}" role="tab" aria-controls="post-1" aria-selected="true">
+                            <!-- Single Blog Post -->
+                            <div class="single-blog-post style-2 d-flex align-items-center">
+                                <div class="post-thumbnail">
+                                    <img src="{{ post.photo_main.url }}" alt="">
+                                </div>
+                                <div class="post-content">
+                                    <h6 class="post-title">{{ post.post_item }}</h6>
+                                    <div class="post-meta d-flex justify-content-between">
+                                        <span><i class="fa fa-comments-o" aria-hidden="true"></i> {{ post.comments.count }}</span>
+                                        <span><i class="fa fa-eye" aria-hidden="true"></i> --42--</span>
+                                        <span><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                  {% endfor %}
+                    
+                </ul>
+            </div>
+        </div>
     </div>
-    {% endfor %}
-</ul>
-  
+</section>
+<!-- ##### Hero Area End ##### -->
+
   
 <!-- <ul class="collection">
     {% for post in posts %}
