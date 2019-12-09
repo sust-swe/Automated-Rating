@@ -70,9 +70,96 @@
   </section>
 
 
+  <!-- ##### Hero Area Start ##### -->
+  <section class="hero--area section-padding-80">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-12 col-md-7 col-lg-8">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="post-1" role="tabpanel" aria-labelledby="post-1-tab">
+                        <!-- Single Feature Post -->
+                        <div class="single-feature-post video-post bg-img" style="background-image: url({{ first_post.0.photo_main.url }});">
+                            <!-- Play Button -->
+                            <a href="/posts/details/{{first_post.0.id}}" class="btn play-btn"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+
+                            <!-- Post Content -->
+                            <div class="post-content">
+                                <a href="#" class="post-cata">{{ first_post.0.post_item.item_category }}</a>
+                                <a href="#" class="post-title">{{ first_post.0.title }}</a>
+                                <div class="post-meta d-flex">
+                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{first_post.0.comments.count}}</a>
+                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 25</a>
+                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ first_post.0.total_likes }}</a>
+                                </div>
+                            </div>
+
+                            <!-- Video Duration -->
+                            <span class="video-duration">05.03</span>
+                        </div>
+                    </div>
+                    {% for post in posts %}
+                    <div class="tab-pane fade" id="post-{{post.id}}" role="tabpanel" aria-labelledby="post-{{post.id}}-tab">
+
+                        <!-- Single Feature Post -->
+                        <div class="single-feature-post video-post bg-img" style="background-image: url({{ post.photo_main.url }});">
+                            <!-- Play Button -->
+                            <a href="/posts/details/{{post.id}}" class="btn play-btn"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+
+                            <!-- Post Content -->
+                            <div class="post-content">
+                                <a href="#" class="post-cata">{{ post.post_item.item_category }}</a>
+                                <a href="#" class="post-title">{{ post.title }}</a>
+                                <div class="post-meta d-flex">
+                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{post.comments.count}}</a>
+                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 25</a>
+                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</a>
+                                </div>
+                            </div>
+
+                            <!-- Video Duration -->
+                            <span class="video-duration">05.03</span>
+                        </div>
+                    </div>
+                  {% endfor %}
+
+                </div>
+            </div>
+
+            <div class="col-12 col-md-5 col-lg-4">
+                <ul class="nav vizew-nav-tab" role="tablist">
+                  {% for post in posts %}
+                    <li class="nav-item">
+                        <a class="nav-link" id="post-{{post.id}}-tab" data-toggle="pill" href="#post-{{post.id}}" role="tab" aria-controls="post-{{post.id}}" aria-selected="false">
+                            <!-- Single Blog Post -->
+                            
+                            <div class="single-blog-post style-2 d-flex align-items-center">
+                                <div class="post-thumbnail">
+                                    <img src="{{ post.photo_main.url }}" alt="">
+                                </div>
+                                <div class="post-content">
+                                    <h6 class="post-title" style="width: 200px;">{{ post.title }}</h6>
+                                    <div class="post-meta d-flex justify-content-between">
+                                        <span><i class="fa fa-comments-o" aria-hidden="true"></i> {{post.comments.count}}</span>
+                                        <span><i class="fa fa-eye" aria-hidden="true"></i> 34</span>
+                                        <span><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                  {% endfor %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Hero Area End ##### -->
+
 
   
-<ul class="collection">
+  
+<!-- <ul class="collection">
     {% for post in posts %}
         <div class="container">
             <li class="collection-item"><a href="/posts/details/{{post.id}}"> {{post.title}} </a></li>
@@ -85,5 +172,8 @@
         <p>{{ post.snippet }}</p>
     </div>
     {% endfor %}
-</ul>
+</ul> -->
+
+
+
 {% endblock %}
