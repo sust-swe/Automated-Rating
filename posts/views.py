@@ -26,17 +26,24 @@ def index(request):
             postd = Posts.objects.filter(body__icontains=query)
 
 
-    paginator = Paginator(posts, 6)
+    # paginator = Paginator(posts, 6)
     page = request.GET.get('page')
-    paged_posts = paginator.get_page(page)
+    # paged_posts = paginator.get_page(page)
+
+    first_post = posts.all().order_by('-created_at')[:1]
+    first_post = list(first_post)
+
+    # print(first_post)
+    
 
     context = {
         'title': 'Recent Posts',
         'rating_choices': rating_choices,
         'category_choices': category_choices,
         'postcriteria_choices': postcriteria_choices,
-        'posts': paged_posts,
-        'postd':postd
+        'posts': posts,
+        'postd':postd,
+        'first_post': first_post,
     }
 
     return render(request, 'posts/index.html', context)
