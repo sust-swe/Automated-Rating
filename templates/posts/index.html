@@ -85,11 +85,11 @@
                             <!-- Post Content -->
                             <div class="post-content">
                                 <a href="#" class="post-cata">{{ first_post.0.post_item.item_category }}</a>
-                                <a href="#" class="post-title">{{ first_post.0.post_item }}</a>
+                                <a href="#" class="post-title">{{ first_post.0.title }}</a>
                                 <div class="post-meta d-flex">
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 25</a>
+                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{first_post.0.comments.count}}</a>
                                     <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 25</a>
-                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 25</a>
+                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ first_post.0.total_likes }}</a>
                                 </div>
                             </div>
 
@@ -108,11 +108,11 @@
                             <!-- Post Content -->
                             <div class="post-content">
                                 <a href="#" class="post-cata">{{ post.post_item.item_category }}</a>
-                                <a href="#" class="post-title">{{ post.post_item }}</a>
+                                <a href="#" class="post-title">{{ post.title }}</a>
                                 <div class="post-meta d-flex">
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 25</a>
+                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{post.comments.count}}</a>
                                     <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 25</a>
-                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 25</a>
+                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</a>
                                 </div>
                             </div>
 
@@ -139,9 +139,9 @@
                                 <div class="post-content">
                                     <h6 class="post-title" style="width: 200px;">{{ post.title }}</h6>
                                     <div class="post-meta d-flex justify-content-between">
-                                        <span><i class="fa fa-comments-o" aria-hidden="true"></i> 14</span>
+                                        <span><i class="fa fa-comments-o" aria-hidden="true"></i> {{post.comments.count}}</span>
                                         <span><i class="fa fa-eye" aria-hidden="true"></i> 34</span>
-                                        <span><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</span>
+                                        <span><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</span>
                                     </div>
                                 </div>
                             </div>
