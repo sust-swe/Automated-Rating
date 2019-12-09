@@ -82,8 +82,8 @@ def archives_grid(request):
 
 def details(request, id):
     post = Posts.objects.get(id=id)
-    next_post = Posts.objects.filter(id__gt=post.id).order_by('id').first()
     prev_post = Posts.objects.filter(id__gt=post.id).order_by('id').first()
+    next_post = Posts.objects.filter(id__lt=post.id).order_by('-id').first()
     comments = post.comments.all()
 
     is_liked = False
