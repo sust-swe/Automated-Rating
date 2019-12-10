@@ -18,6 +18,7 @@ def index(request):
     # return HttpResponse('hello from posts')
 
     posts = Posts.objects.order_by('-created_at')
+    
     postd = Posts.objects.order_by('-created_at')
     
     if request.method =="POST":
