@@ -70,7 +70,7 @@
   </section>
 
 
-  <!-- ##### Hero Area Start ##### -->
+  <!-- ##### All Post Area Start ##### -->
   <section class="hero--area section-padding-80">
     <div class="container">
         <div class="row no-gutters">
@@ -92,9 +92,6 @@
                                     <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ first_post.0.total_likes }}</a>
                                 </div>
                             </div>
-
-                            <!-- Video Duration -->
-                            <span class="video-duration">05.03</span>
                         </div>
                     </div>
                     {% for post in posts %}
@@ -115,9 +112,6 @@
                                     <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</a>
                                 </div>
                             </div>
-
-                            <!-- Video Duration -->
-                            <span class="video-duration">05.03</span>
                         </div>
                     </div>
                   {% endfor %}
@@ -154,10 +148,51 @@
         </div>
     </div>
 </section>
-<!-- ##### Hero Area End ##### -->
+<!-- ##### All Post Area End ##### -->
+
+  <!-- ##### Trending Posts Area Start ##### -->
+  <section class="trending-posts-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Section Heading -->
+                <div class="section-heading">
+                    <h4>Trending posts</h4>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            {% for post in trend_post %}
+            <!-- Single Blog Post -->
+            <div class="col-12 col-md-4">
+                <div class="single-post-area mb-80">
+                    <!-- Post Thumbnail -->
+                    <div class="post-thumbnail">
+                        <img src="{{ post.photo_main.url }}" alt="">
+                    </div>
+
+                    <!-- Post Content -->
+                    <div class="post-content">
+                        <a href="#" class="post-cata cata-sm cata-primary">{{ post.post_item.item_category }}</a>
+                        <a href="/posts/details/{{post.id}}" class="post-title">{{ post.title }}</a>
+                        <div class="post-meta d-flex">
+                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{ post.comments.count}}</a>
+                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 38</a>
+                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+<!-- ##### Trending Posts Area End ##### -->
 
 
-  
   
 <!-- <ul class="collection">
     {% for post in posts %}
