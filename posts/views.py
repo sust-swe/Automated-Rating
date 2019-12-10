@@ -19,6 +19,7 @@ def index(request):
 
     posts = Posts.objects.order_by('-created_at')
     postd = Posts.objects.order_by('-created_at')
+    
     if request.method =="POST":
         query = request.POST['q']
         if query:
@@ -33,6 +34,9 @@ def index(request):
     first_post = posts.all().order_by('-created_at')[:1]
     first_post = list(first_post)
 
+    
+    trend_post = posts.all().order_by('-created_at')[:3]
+    trend_post = list(trend_post)
     # print(first_post)
     
 
@@ -44,6 +48,7 @@ def index(request):
         'posts': posts,
         'postd':postd,
         'first_post': first_post,
+        'trend_post':trend_post,
     }
 
     return render(request, 'posts/index.html', context)
@@ -82,8 +87,8 @@ def archives_grid(request):
 
 def details(request, id):
     post = Posts.objects.get(id=id)
-    next_post = Posts.objects.filter(id__gt=post.id).order_by('id').first()
     prev_post = Posts.objects.filter(id__gt=post.id).order_by('id').first()
+    next_post = Posts.objects.filter(id__lt=post.id).order_by('-id').first()
     comments = post.comments.all()
 
     is_liked = False

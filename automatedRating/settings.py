@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'accounts',
     'posts',
     "friendship",
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -145,3 +146,5 @@ MEDIA_URL = '/media/'
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
