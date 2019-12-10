@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
 
 <!-- ##### Breadcrumb Area Start ##### -->
@@ -235,7 +236,7 @@
                             </div>
                             <div class="col-12 col-lg-12">
                               {% csrf_token %}
-                              {{ form }}
+                              {{ form|crispy }}
   
                               <!-- <input type="email" class="form-control" id="email" placeholder="Your Email*"> -->
                           </div>
@@ -261,11 +262,27 @@
 
           <!-- ***** Single Widget ***** -->
           <div class="single-widget share-post-widget mb-50">
-            <p>Share This Post</p>
+            <div class="container">
+              <form action="{% url 'like_post' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-primary"> Like </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- ***** Single Widget ***** -->
+          <div class="single-widget share-post-widget mb-50">
+            <p>What's on your mind ?</p>
+            <a href="{% url 'create' %}" class="google"><i class="fa fa-plus" aria-hidden="true"></i> Create Post</a>
+          </div>
+
+          <!-- ***** Single Widget ***** -->
+          <div class="single-widget share-post-widget mb-50">
+            <p>Share this post</p>
             <a href="https://www.facebook.com/" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
             <a href="https://twitter.com/" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
           </div>
-
+          
           <!-- ***** Single Widget ***** -->
           <div class="single-widget p-0 author-widget">
             <div class="p-4">
