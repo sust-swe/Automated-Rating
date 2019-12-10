@@ -18,15 +18,10 @@ def index(request):
     # return HttpResponse('hello from posts')
 
     posts = Posts.objects.order_by('-created_at')
-    
     postd = Posts.objects.order_by('-created_at')
-    
-    if request.method =="POST":
-        query = request.POST['q']
-        if query:
-            posts = Posts.objects.filter(title__icontains=query)
-            postd = Posts.objects.filter(body__icontains=query)
-
+    movie_post = Posts.objects.filter(post_item__item_category__category_name = 'Movie').order_by('created_at')
+    game_post = Posts.objects.filter(post_item__item_category__category_name = 'Game').order_by('created_at')
+    tv_series_post = Posts.objects.filter(post_item__item_category__category_name = 'TV-Series').order_by('created_at')
 
     # paginator = Paginator(posts, 6)
     page = request.GET.get('page')
@@ -38,8 +33,8 @@ def index(request):
     
     trend_post = posts.all().order_by('-created_at')[:3]
     trend_post = list(trend_post)
-    # print(first_post)
     
+    #print(movie_post)
 
     context = {
         'title': 'Recent Posts',
@@ -49,7 +44,10 @@ def index(request):
         'posts': posts,
         'postd':postd,
         'first_post': first_post,
-        'trend_post':trend_post,
+        'trend_post': trend_post,
+        'movie_post': movie_post,
+        'game_post' : game_post,
+        'tv_series_post' : tv_series_post,
     }
 
     return render(request, 'posts/index.html', context)
