@@ -175,7 +175,7 @@
 
                     <!-- Post Content -->
                     <div class="post-content">
-                        <a href="#" class="post-cata cata-sm cata-primary">{{ post.post_item.item_category }}</a>
+                        <a href="#" class="post-cata cata-sm cata-success">{{ post.post_item.item_category }}</a>
                         <a href="/posts/details/{{post.id}}" class="post-title">{{ post.title }}</a>
                         <div class="post-meta d-flex">
                             <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{ post.comments.count}}</a>
@@ -193,6 +193,113 @@
 <!-- ##### Trending Posts Area End ##### -->
 
 
+<!-- ##### Calagory Post Area Start ##### -->
+<section class="vizew-post-area mb-50">
+  <div class='container'>
+    <div class="row">
+        <div class="col-4 col-lg-4">
+          <!-- Section Heading -->
+          <div class="section-heading style-2">
+              <h4>Movies</h4>
+              <div class="line"></div>
+          </div>
+
+          <!-- Sports Video Slides -->
+          <div class="sport-video-slides owl-carousel mb-50">
+            {% for post in movie_post %}  
+            <!-- Single Blog Post -->
+              <div class="single-post-area">
+                  <!-- Post Thumbnail -->
+                  <div class="post-thumbnail">
+                      <img src="{{ post.photo_main.url}}" alt="">
+                  </div>
+
+                  <!-- Post Content -->
+                  <div class="post-content">
+                      <a href="#" class="post-cata cata-sm cata-success">{{ post.post_item.item_category}}</a>
+                      <a href="/posts/details/{{post.id}}" class="post-title">{{ post.title}}</a>
+                      <div class="post-meta d-flex">
+                          <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{ post.comments.count }}</a>
+                          <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 38</a>
+                          <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</a>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+        </div>
+
+        <div class="col-4 col-lg-4">
+            <!-- Section Heading -->
+            <div class="section-heading style-2">
+                <h4>Games</h4>
+                <div class="line"></div>
+            </div>
+  
+            <!-- Sports Video Slides -->
+            <div class="sport-video-slides owl-carousel mb-50">
+              {% for post in game_post %}  
+              <!-- Single Blog Post -->
+                <div class="single-post-area">
+                    <!-- Post Thumbnail -->
+                    <div class="post-thumbnail">
+                        <img src="{{ post.photo_main.url}}" alt="">
+                    </div>
+  
+                    <!-- Post Content -->
+                    <div class="post-content">
+                        <a href="#" class="post-cata cata-sm cata-danger">{{ post.post_item.item_category}}</a>
+                        <a href="/posts/details/{{post.id}}" class="post-title">{{ post.title}}</a>
+                        <div class="post-meta d-flex">
+                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{ post.comments.count }}</a>
+                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 38</a>
+                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+          </div>
+      
+      </div>
+    </div>
+    <div class=container>
+        <div class="row">
+            <div class="col-4 col-lg-4">
+                <!-- Section Heading -->
+                <div class="section-heading style-2">
+                    <h4>TV Series</h4>
+                    <div class="line"></div>
+                </div>
+      
+                <!-- Sports Video Slides -->
+                <div class="sport-video-slides owl-carousel mb-50">
+                  {% for post in tv_series_post %}  
+                  <!-- Single Blog Post -->
+                    <div class="single-post-area">
+                        <!-- Post Thumbnail -->
+                        <div class="post-thumbnail">
+                            <img src="{{ post.photo_main.url}}" alt="">
+                        </div>
+      
+                        <!-- Post Content -->
+                        <div class="post-content">
+                            <a href="#" class="post-cata cata-sm cata-primary">{{ post.post_item.item_category}}</a>
+                            <a href="/posts/details/{{post.id}}" class="post-title">{{ post.title}}</a>
+                            <div class="post-meta d-flex">
+                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{ post.comments.count }}</a>
+                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 38</a>
+                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+              </div>
+        </div>
+    </div>
+  </div>
+</section>
   
 <!-- <ul class="collection">
     {% for post in posts %}

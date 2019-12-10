@@ -28,15 +28,7 @@
                         <a href="https://www.linkedin.com/"><i class="fas fa-sign-out-alt"></i></a>
                        <!-- <a href="https://www.youtube.com/"><i class="fa fa-youtube-play"></i></a> --> 
                     </div>
-                    <!-- Top Search Area -->
-                    <div class="top-search-area">
-                        
-                        <form action="{% url 'index' %}" method="POST">
-                                {% csrf_token %}
-                                <input type="search" id="topSearch" placeholder="Search" name="q">
-                                <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
-                              </form>
-                    </div>
+                    
                     <!-- Login -->
                     <a href="#" class="login-btn"><i class="fa fa-user" aria-hidden="true"> </i></a>
                     <a href="#"> {% if user.is_authenticated %} {{ user }} {% endif %} </a>
