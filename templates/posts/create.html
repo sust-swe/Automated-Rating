@@ -1,5 +1,6 @@
-{% extends 'base.html' %}
 
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -119,7 +120,7 @@
                       <div class="row">
                             <div class="col-12 col-lg-12">
                               {% csrf_token %}
-                              {{ form.as_p }}
+                              {{ form|crispy }}
   
                               <!-- <input type="email" class="form-control" id="email" placeholder="Your Email*"> -->
                             </div>
