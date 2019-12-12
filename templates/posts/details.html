@@ -270,18 +270,18 @@
 
           {% for post in related_post %}
           <!-- Single Feature Post -->
-          <div class="single-feature-post video-post bg-img" style="background-image: url(img/bg-img/7.jpg);">
+          <div class="single-feature-post video-post bg-img" style="background-image: url({{ post.photo_main.url }});">
               <!-- Play Button -->
-              <a href="video-post.html" class="btn play-btn"><i class="fa fa-play" aria-hidden="true"></i></a>
+              <a href="/posts/details/{{post.id}}" class="btn play-btn"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 
               <!-- Post Content -->
               <div class="post-content">
                   <a href="#" class="post-cata cata-sm cata-primary">{{ post.post_item.item_category }}</a>
                   <a href="single-post.html" class="post-title">{{ post.title }}</a>
                   <div class="post-meta d-flex">
-                      <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 25</a>
+                      <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{post.comments.count}}</a>
                       <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 25</a>
-                      <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 25</a>
+                      <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</a>
                   </div>
               </div>
 
