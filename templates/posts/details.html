@@ -164,26 +164,7 @@
               </div>
   
               <p>{{ post.body }}</p>
-  
-              
 
-              <!-- Post Author -->
-              <div class="vizew-post-author d-flex align-items-center py-5">
-                <div class="post-author-thumb">
-                  <img src="{% static 'img/bg-img/30.jpg'%}" alt="">
-                </div>
-                <div class="post-author-desc pl-4">
-                  <a href="#" class="author-name">{{ post.author }}</a>
-                  <p>Hello! My name is {{ post.author }}. I’m a web designer and front-end web developer with over fifteen
-                    years of professional.</p>
-                  <div class="post-author-social-info">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
   
               <!-- Comment Area Start -->
               <div class="comment_area clearfix mb-50">
@@ -277,7 +258,11 @@
               <!-- Post Content -->
               <div class="post-content">
                   <a href="#" class="post-cata cata-sm cata-primary">{{ post.post_item.item_category }}</a>
-                  <a href="single-post.html" class="post-title">{{ post.title }}</a>
+                  <a href="#" class="post-cata cata-xl cata-success">{{ post.post_item }}</a>
+                      <div>
+                        <button type="button" class="btn btn-dark">{{ post.post_item.rating }}</button>
+                      </div>
+                  <a href="/posts/details/{{post.id}}" class="post-title">{{ post.title }}</a>
                   <div class="post-meta d-flex">
                       <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{post.comments.count}}</a>
                       <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 25</a>
