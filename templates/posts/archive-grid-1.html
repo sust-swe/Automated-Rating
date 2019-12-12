@@ -69,7 +69,6 @@
                                                     <p class="mb-2">{{ post.snippet }}</p>
                                                     <div class="post-meta d-flex">
                                                         <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{ post.comments.count }}</a>
-                                                        <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> --42--</a>
                                                         <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</a>
                                                     </div>
                                                 </div>
@@ -145,6 +144,11 @@
                 <div class="sidebar-area">
 
                     <!-- ***** Single Widget ***** -->
+                    <div class="single-widget share-post-widget mb-50">
+                        <p>What's on your mind ?</p>
+                        <a href="{% url 'create' %}" class="google"><i class="fa fa-plus" aria-hidden="true"></i> Create Post</a>
+                    </div>
+                    <!-- ***** Single Widget ***** -->
                     <div class="single-widget followers-widget mb-50">
                         <a href="https://www.facebook.com/" class="facebook"><i class="fa fa-facebook"
                                 aria-hidden="true"></i><span class="counter">198</span><span>Fan</span></a>
@@ -156,31 +160,6 @@
 
                     
 
-                    <!-- ***** Single Widget ***** -->
-                    <div class="single-widget">
-                        <!-- Section Heading -->
-                        <div class="section-heading style-2 mb-30">
-                            <h4>Most Viewed Posts </h4>
-                            <div class="line"></div>
-                        </div>
-
-                        <!-- Single Blog Post -->
-                        {% for post in trend_post %}
-                        <div class="single-blog-post d-flex">
-                            <div  class="post-thumbnail">
-                                <a href="/posts/details/{{post.id}}"> <img src="{{ post.photo_main.url }}" alt=""> </a>
-                            </div>
-                            <div class="post-content">
-                                <a href="/posts/details/{{post.id}}" class="post-title">{{ post.snippet }}</a>
-                                <div class="post-meta d-flex justify-content-between">
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{ post.comments.count }}</a>
-                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 34</a>
-                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</a>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
 
 
                 </div>
