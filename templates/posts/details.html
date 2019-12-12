@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
 {% block content %}
 
 <!-- ##### Breadcrumb Area Start ##### -->
@@ -166,6 +165,8 @@
   
               <p>{{ post.body }}</p>
   
+              
+
               <!-- Post Author -->
               <div class="vizew-post-author d-flex align-items-center py-5">
                 <div class="post-author-thumb">
@@ -236,7 +237,7 @@
                             </div>
                             <div class="col-12 col-lg-12">
                               {% csrf_token %}
-                              {{ form|crispy }}
+                              {{ form }}
   
                               <!-- <input type="email" class="form-control" id="email" placeholder="Your Email*"> -->
                           </div>
@@ -254,7 +255,44 @@
 
           </div>
         </div>
+
+        <br>
+        <br>
+
+        <!-- Section Heading -->
+        <div class="section-heading style-2">
+          <h4>Related Posts</h4>
+          <div class="line"></div>
+        </div>
+
+        <!-- Featured Post Slides -->
+        <div class="featured-post-slides owl-carousel mb-30">
+
+          {% for post in related_post %}
+          <!-- Single Feature Post -->
+          <div class="single-feature-post video-post bg-img" style="background-image: url(img/bg-img/7.jpg);">
+              <!-- Play Button -->
+              <a href="video-post.html" class="btn play-btn"><i class="fa fa-play" aria-hidden="true"></i></a>
+
+              <!-- Post Content -->
+              <div class="post-content">
+                  <a href="#" class="post-cata cata-sm cata-primary">{{ post.post_item.item_category }}</a>
+                  <a href="single-post.html" class="post-title">{{ post.title }}</a>
+                  <div class="post-meta d-flex">
+                      <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 25</a>
+                      <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 25</a>
+                      <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 25</a>
+                  </div>
+              </div>
+
+          </div>
+          {% endfor %}
+        </div>
+        
       </div>
+
+      
+
 
       <!-- Sidebar Widget -->
       <div class="col-12 col-md-6 col-lg-4 col-xl-3">
