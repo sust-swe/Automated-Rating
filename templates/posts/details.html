@@ -300,12 +300,10 @@
 
           <!-- ***** Single Widget ***** -->
           <div class="single-widget share-post-widget mb-50">
-            <div class="container">
-              <form action="{% url 'like_post' %}" method="post">
-                {% csrf_token %}
-                <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-primary"> Like </button>
-              </form>
-            </div>
+              <!-- Like Section Separated to use Ajax -->
+              <div id="like-section" >
+              {% include 'posts/like_section.html' %}
+              </div>
           </div>
 
           <!-- ***** Single Widget ***** -->
