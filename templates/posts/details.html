@@ -37,7 +37,6 @@
         <a href="/posts/details/{{prev_post.id}}" class="post-title">{{ prev_post.title }}</a>
         <div class="post-meta d-flex">
           <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{ prev_post.comments.count }}</a>
-          <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 12</a>
           <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ prev_post.total_likes }}</a>
         </div>
       </div>
@@ -58,7 +57,6 @@
         <a href="/posts/details/{{next_post.id}}" class="post-title">{{ next_post.title }}</a>
         <div class="post-meta d-flex">
           <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>  {{ next_post.comments.count }}</a>
-          <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 15</a>
           <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ next_post.total_likes }}</a>
         </div>
       </div>
@@ -66,6 +64,8 @@
   </div>
 </div>
 <!-- ##### Pager Area End ##### -->
+
+
 <!-- ##### Post Details Area Start ##### -->
 <section class="post-details-area mb-80">
     <div class="container">
@@ -157,7 +157,6 @@
                   </div>
                   <div class="post-meta d-flex">
                     <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>  <span class="counter">{{ post.comments.count }}</span></a>
-                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i>  <span class="counter">22</span></a>
                     <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span class="counter">{{ post.total_likes }}</span></a>
                   </div>
                 </div>
@@ -265,7 +264,6 @@
                   <a href="/posts/details/{{post.id}}" class="post-title">{{ post.title }}</a>
                   <div class="post-meta d-flex">
                       <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{post.comments.count}}</a>
-                      <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 25</a>
                       <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</a>
                   </div>
               </div>
@@ -308,13 +306,12 @@
           <div class="single-widget p-0 author-widget">
             <div class="p-4">
               <img class="author-avatar" src="{% static 'img/bg-img/30.jpg' %}" alt="">
-              <a href="#" class="author-name">{{ post.author.first_name }}</a>
+              <a href="#" class="author-name">{{ post.author.username }}</a>
               <div class="author-social-info">
                 <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
                 <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
                 <a href="https://bd.linkedin.com/"><i class="fa fa-pinterest"></i></a>
               </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
             </div>
 
             <div class="authors--meta-data d-flex">
