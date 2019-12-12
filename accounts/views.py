@@ -63,7 +63,7 @@ def register(request):
 
                     #do login after register
                     user.save()
-                    return redirect('login')
+                    return redirect('index')
         else:
             messages.error(request, 'Password Do Not Match !')
             return redirect('register')

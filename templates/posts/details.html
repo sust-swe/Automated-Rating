@@ -163,6 +163,10 @@
               </div>
   
               <p>{{ post.body }}</p>
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
   
               <!-- Comment Area Start -->
               <div class="comment_area clearfix mb-50">
@@ -256,7 +260,11 @@
               <!-- Post Content -->
               <div class="post-content">
                   <a href="#" class="post-cata cata-sm cata-primary">{{ post.post_item.item_category }}</a>
-                  <a href="single-post.html" class="post-title">{{ post.title }}</a>
+                  <a href="#" class="post-cata cata-xl cata-success">{{ post.post_item }}</a>
+                      <div>
+                        <button type="button" class="btn btn-dark">{{ post.post_item.rating }}</button>
+                      </div>
+                  <a href="/posts/details/{{post.id}}" class="post-title">{{ post.title }}</a>
                   <div class="post-meta d-flex">
                       <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{post.comments.count}}</a>
                       <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</a>
@@ -278,12 +286,10 @@
 
           <!-- ***** Single Widget ***** -->
           <div class="single-widget share-post-widget mb-50">
-            <div class="container">
-              <form action="{% url 'like_post' %}" method="post">
-                {% csrf_token %}
-                <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-primary"> Like </button>
-              </form>
-            </div>
+              <!-- Like Section Separated to use Ajax -->
+              <div id="like-section" >
+              {% include 'posts/like_section.html' %}
+              </div>
           </div>
 
           <!-- ***** Single Widget ***** -->
