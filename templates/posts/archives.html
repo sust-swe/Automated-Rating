@@ -150,11 +150,6 @@
                     </div>
 
                     <!-- ***** Single Widget ***** -->
-                    <div class="single-widget add-widget mb-50">
-                        <a href="#"><img src="{% static 'img/bg-img/add.png' %}" alt=""></a>
-                    </div>
-
-                    <!-- ***** Single Widget ***** -->
                     <div class="single-widget">
                         <!-- Section Heading -->
                         <div class="section-heading style-2 mb-30">
@@ -163,7 +158,7 @@
                         </div>
 
                         <!-- Single Blog Post -->
-                        {% for post in posts %}
+                        {% for post in trend_post %}
                         <div class="single-blog-post d-flex">
                             <div class="post-thumbnail">
                                     <a href="/posts/details/{{post.id}}"> <img src="{{ post.photo_main.url }}" alt=""> </a>
@@ -180,93 +175,8 @@
                         {% endfor %}
                     </div>
 
-                    <!-- ***** Sidebar Widget ***** -->
-                    <div class="single-widget youtube-channel-widget mb-50">
-                        <!-- Section Heading -->
-                        <div class="section-heading style-2 mb-30">
-                            <h4>Hot Channels</h4>
-                            <div class="line"></div>
-                        </div>
 
-                        <!-- Single YouTube Channel -->
-                        <div class="single-youtube-channel d-flex align-items-center">
-                            <div class="youtube-channel-thumbnail">
-                                <img src="{% static 'img/bg-img/25.jpg' %}" alt="">
-                            </div>
-                            <div class="youtube-channel-content">
-                                <a href="single-post.html" class="channel-title">Music Channel</a>
-                                <a href="#" class="btn subscribe-btn"><i class="fa fa-play-circle-o"
-                                        aria-hidden="true"></i> Subscribe</a>
-                            </div>
-                        </div>
 
-                        <!-- Single YouTube Channel -->
-                        <div class="single-youtube-channel d-flex align-items-center">
-                            <div class="youtube-channel-thumbnail">
-                                <img src="{% static 'img/bg-img/26.jpg' %}" alt="">
-                            </div>
-                            <div class="youtube-channel-content">
-                                <a href="single-post.html" class="channel-title">Trending Channel</a>
-                                <a href="#" class="btn subscribe-btn"><i class="fa fa-play-circle-o"
-                                        aria-hidden="true"></i> Subscribe</a>
-                            </div>
-                        </div>
-
-                        <!-- Single YouTube Channel -->
-                        <div class="single-youtube-channel d-flex align-items-center">
-                            <div class="youtube-channel-thumbnail">
-                                <img src="{% static 'img/bg-img/27.jpg' %}" alt="">
-                            </div>
-                            <div class="youtube-channel-content">
-                                <a href="single-post.html" class="channel-title">Travel Channel</a>
-                                <a href="#" class="btn subscribe-btn"><i class="fa fa-play-circle-o"
-                                        aria-hidden="true"></i> Subscribe</a>
-                            </div>
-                        </div>
-
-                        <!-- Single YouTube Channel -->
-                        <div class="single-youtube-channel d-flex align-items-center">
-                            <div class="youtube-channel-thumbnail">
-                                <img src="{% static 'img/bg-img/28.jpg' %}" alt="">
-                            </div>
-                            <div class="youtube-channel-content">
-                                <a href="single-post.html" class="channel-title">Sport Channel</a>
-                                <a href="#" class="btn subscribe-btn"><i class="fa fa-play-circle-o"
-                                        aria-hidden="true"></i> Subscribe</a>
-                            </div>
-                        </div>
-
-                        <!-- Single YouTube Channel -->
-                        <div class="single-youtube-channel d-flex align-items-center">
-                            <div class="youtube-channel-thumbnail">
-                                <img src="{% static 'img/bg-img/29.jpg' %}" alt="">
-                            </div>
-                            <div class="youtube-channel-content">
-                                <a href="single-post.html" class="channel-title">TV Show Channel</a>
-                                <a href="#" class="btn subscribe-btn"><i class="fa fa-play-circle-o"
-                                        aria-hidden="true"></i> Subscribe</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ***** Single Widget ***** -->
-                    <div class="single-widget newsletter-widget mb-50">
-                        <!-- Section Heading -->
-                        <div class="section-heading style-2 mb-30">
-                            <h4>Newsletter</h4>
-                            <div class="line"></div>
-                        </div>
-                        <p>Subscribe our newsletter gor get notification about new updates, information discount, etc.
-                        </p>
-                        <!-- Newsletter Form -->
-                        <div class="newsletter-form">
-                            <form action="#" method="post">
-                                <input type="email" name="nl-email" class="form-control mb-15" id="emailnl"
-                                    placeholder="Enter your email">
-                                <button type="submit" class="btn vizew-btn w-100">Subscribe</button>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

@@ -58,14 +58,18 @@ def index(request):
 def archives(request):
 
     posts = Posts.objects.order_by('-created_at')
+    trend_post = posts.all().order_by('-created_at')[:3]
+    trend_post = list(trend_post)
+    
 
-    paginator = Paginator(posts, 4)
+    paginator = Paginator(posts, 6)
     page = request.GET.get('page')
     paged_posts = paginator.get_page(page)
 
     context = {
         'title': 'Recent Posts',
-        'posts': paged_posts
+        'posts': paged_posts,
+        'trend_post': trend_post,
     }
 
     return render(request, 'posts/archives.html', context)
@@ -73,14 +77,18 @@ def archives(request):
 def archives_grid(request):
 
     posts = Posts.objects.order_by('-created_at')
+    trend_post = posts.all().order_by('-created_at')[:3]
+    trend_post = list(trend_post)
+    
 
-    paginator = Paginator(posts, 4)
+    paginator = Paginator(posts, 8)
     page = request.GET.get('page')
     paged_posts = paginator.get_page(page)
 
     context = {
         'title': 'Recent Posts',
-        'posts': paged_posts
+        'posts': paged_posts,
+        'trend_post': trend_post,
     }
 
     return render(request, 'posts/archive-grid-1.html', context)
