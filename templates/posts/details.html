@@ -165,6 +165,8 @@
   
               <p>{{ post.body }}</p>
   
+              
+
               <!-- Post Author -->
               <div class="vizew-post-author d-flex align-items-center py-5">
                 <div class="post-author-thumb">
@@ -253,7 +255,44 @@
 
           </div>
         </div>
+
+        <br>
+        <br>
+
+        <!-- Section Heading -->
+        <div class="section-heading style-2">
+          <h4>Related Posts</h4>
+          <div class="line"></div>
+        </div>
+
+        <!-- Featured Post Slides -->
+        <div class="featured-post-slides owl-carousel mb-30">
+
+          {% for post in related_post %}
+          <!-- Single Feature Post -->
+          <div class="single-feature-post video-post bg-img" style="background-image: url({{ post.photo_main.url }});">
+              <!-- Play Button -->
+              <a href="/posts/details/{{post.id}}" class="btn play-btn"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+
+              <!-- Post Content -->
+              <div class="post-content">
+                  <a href="#" class="post-cata cata-sm cata-primary">{{ post.post_item.item_category }}</a>
+                  <a href="single-post.html" class="post-title">{{ post.title }}</a>
+                  <div class="post-meta d-flex">
+                      <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{post.comments.count}}</a>
+                      <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 25</a>
+                      <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ post.total_likes }}</a>
+                  </div>
+              </div>
+
+          </div>
+          {% endfor %}
+        </div>
+        
       </div>
+
+      
+
 
       <!-- Sidebar Widget -->
       <div class="col-12 col-md-6 col-lg-4 col-xl-3">
@@ -261,11 +300,27 @@
 
           <!-- ***** Single Widget ***** -->
           <div class="single-widget share-post-widget mb-50">
-            <p>Share This Post</p>
+            <div class="container">
+              <form action="{% url 'like_post' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-primary"> Like </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- ***** Single Widget ***** -->
+          <div class="single-widget share-post-widget mb-50">
+            <p>What's on your mind ?</p>
+            <a href="{% url 'create' %}" class="google"><i class="fa fa-plus" aria-hidden="true"></i> Create Post</a>
+          </div>
+
+          <!-- ***** Single Widget ***** -->
+          <div class="single-widget share-post-widget mb-50">
+            <p>Share this post</p>
             <a href="https://www.facebook.com/" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
             <a href="https://twitter.com/" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
           </div>
-
+          
           <!-- ***** Single Widget ***** -->
           <div class="single-widget p-0 author-widget">
             <div class="p-4">

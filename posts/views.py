@@ -22,6 +22,7 @@ def index(request):
     movie_post = Posts.objects.filter(post_item__item_category__category_name = 'Movie').order_by('created_at')
     game_post = Posts.objects.filter(post_item__item_category__category_name = 'Game').order_by('created_at')
     tv_series_post = Posts.objects.filter(post_item__item_category__category_name = 'TV-Series').order_by('created_at')
+    drama_post = Posts.objects.filter(post_item__item_category__category_name = 'Drama').order_by('created_at')
 
     # paginator = Paginator(posts, 6)
     page = request.GET.get('page')
@@ -48,6 +49,7 @@ def index(request):
         'movie_post': movie_post,
         'game_post' : game_post,
         'tv_series_post' : tv_series_post,
+        'drama_post' : drama_post,
     }
 
     return render(request, 'posts/index.html', context)
@@ -88,6 +90,10 @@ def details(request, id):
     post = Posts.objects.get(id=id)
     prev_post = Posts.objects.filter(id__gt=post.id).order_by('id').first()
     next_post = Posts.objects.filter(id__lt=post.id).order_by('-id').first()
+
+    related_post = Posts.objects.filter(post_item__ItemsList_name=post.post_item).exclude(id = post.id)
+    print(related_post)
+
     comments = post.comments.all()
 
     is_liked = False
@@ -116,6 +122,7 @@ def details(request, id):
         'form': form,
         'comments': comments,
         'is_liked': is_liked,
+        'related_post' : related_post,
     }
 
     return render(request, 'posts/details.html', context)
