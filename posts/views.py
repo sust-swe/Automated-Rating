@@ -212,7 +212,7 @@ def search(request):
     if 'postcriteria' in request.GET:
         postcriteria = request.GET['postcriteria']
         if postcriteria:
-            queryset_list = queryset_list.filter(postcriteria = postcriteria)
+            queryset_list = queryset_list.filter(post_item__ItemsList_name=postcriteria)
 
     #rating for equal or greater number
     if 'rating' in request.GET:
