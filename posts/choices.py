@@ -1,4 +1,5 @@
 from .models import PostCategory
+from .models import ItemsList
 
 rating_choices = {
     '3': '3.00',
@@ -12,9 +13,7 @@ rating_choices = {
 }
 
 postcriteria_choices = {
-    'mpp': 'Most Popular Post',
-    'mcp': 'Most Commented Post',
-    'mrp': 'Highest Rating'
+
 }
 
 category_choices = {
@@ -23,3 +22,7 @@ category_choices = {
 categories = PostCategory.objects.all()
 for category in categories:
     category_choices[category.category_name] = category.category_name
+
+titles = ItemsList.objects.all()
+for title in titles:
+    postcriteria_choices[title.ItemsList_name] = title.ItemsList_name

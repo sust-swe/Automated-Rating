@@ -1,8 +1,12 @@
 # this code run on terminal
 # python manage.py shell
 
-# filename = 'C:/Users/tamim/PyProjects/AutomatedRating/Natural Language Processing NLP/finalized_model.sav'
+# filename = 'C:/Users/tamim/PyProjects/AutomatedRating/Natural Language Processing NLP/cvectorize.sav.sav'
 # filename = 'C:/Users/tamim/PyProjects/AutomatedRating/Natural Language Processing NLP/sentiment.sav'
+
+# saikat
+# filename = 'C:/Users/User/Documents/Visual Studio Code/project 350/Automated-Rating/Natural Language Processing NLP/cvectorize.sav'
+# filename = 'C:/Users/User/Documents/Visual Studio Code/project 350/Automated-Rating/Natural Language Processing NLP/sentiment.sav'
 
 import pickle
 from posts.models import Posts
