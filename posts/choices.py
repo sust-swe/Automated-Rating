@@ -2,6 +2,7 @@ from .models import PostCategory
 from .models import ItemsList
 
 rating_choices = {
+    '': 'Blank',
     '3': '3.00',
     '4': '4.00',
     '5': '5.00',
@@ -13,10 +14,11 @@ rating_choices = {
 }
 
 postcriteria_choices = {
-
+    '': 'Blank',
 }
 
 category_choices = {
+    '': 'Blank',
 }
 
 categories = PostCategory.objects.all()
