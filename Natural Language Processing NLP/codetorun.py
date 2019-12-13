@@ -21,6 +21,7 @@ loaded_model = pickle.load(open(filename, 'rb'))
 #checking
 loaded_model.predict(loaded_vect.transform(['this is super good', 'this is good']))
 
+posts = Posts.objects.all()
 for post in posts:
      comments = post.comments.all()
      rat_lst = []
