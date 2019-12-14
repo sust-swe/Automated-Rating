@@ -31,5 +31,6 @@ for post in posts:
              rat = (ar[0] + 1)*2
              rat_lst.append(np.float64(rat).item())
      rat_lst
-     post.post_item.rating = mean(rat_lst)
-     post.post_item.save()
+     if (rat_lst != []):
+         post.post_item.rating = mean(rat_lst)
+         post.post_item.save()

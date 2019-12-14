@@ -40,8 +40,13 @@ def register(request):
         password = request.POST['password']
         password2 = request.POST['password2']
 
+        if len(password) < 5:
+            messages.error(request, 'Password Too short !')
+            return redirect('register')
+
+
         #check validation
-        if password == password2:
+        elif password == password2:
             #check existing username
             if User.objects.filter(username = username).exists():
                 messages.error(request, 'Username is already Taken !')
@@ -57,13 +62,14 @@ def register(request):
                     first_name = first_name, last_name = last_name)
 
                     #auto login after register
-                    #auth.login(request, user)
-                    #messages.success(request, 'You are logged in')
-                    #return redirect('index')
+                    user.save()
+                    auth.login(request, user)
+                    messages.success(request, 'You are logged in')
+                    return redirect('index')
 
                     #do login after register
-                    user.save()
-                    return redirect('index')
+                    #user.save()
+                    #return redirect('index')
         else:
             messages.error(request, 'Password Do Not Match !')
             return redirect('register')
