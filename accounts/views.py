@@ -40,10 +40,9 @@ def register(request):
         password = request.POST['password']
         password2 = request.POST['password2']
 
-        if len(password) < 5:
-            messages.error(request, 'Password Too short !')
+        if len(password) <5:
+            messages.error(request, 'Password too short !')
             return redirect('register')
-
 
         #check validation
         elif password == password2:
