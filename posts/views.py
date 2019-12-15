@@ -6,10 +6,13 @@ from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.template.loader import render_to_string
+from django.contrib import messages
 
 from .models import Posts, Comment
 from .choices import rating_choices, category_choices, postcriteria_choices
 from . import forms
+import imghdr
+import sys
 
 # Create your views here.
 
@@ -161,6 +164,13 @@ def like_post(request):
 @login_required(login_url="login")
 def create(request):
     if request.method == 'POST':
+        # image validity check
+        for filename, file in request.FILES.items():
+            name = request.FILES[filename].name
+            if(name.lower().endswith(('.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif')) == False):
+                messages.error(request, 'Please upload valid image File !')
+                return redirect('create')
+            
         # request.files for image
         form = forms.CreatePost(request.POST, request.FILES)
         if form.is_valid():
