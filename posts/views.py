@@ -178,6 +178,7 @@ def create(request):
             instance = form.save(commit=False)
             instance.author = request.user
             instance.save()
+            messages.success(request, 'Successfully Created Your Post !')
             return redirect('index')
 
     else:
@@ -192,7 +193,7 @@ def search(request):
 
     queryset_list = Posts.objects.order_by('-created_at')
 
-    #keywords=avenger&author=fsda&category=Game&postcriteria=mpp&rating=5
+    # keywords=avenger&author=fsda&category=Game&postcriteria=mpp&rating=5
     # Keywords for existing in all fields
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
