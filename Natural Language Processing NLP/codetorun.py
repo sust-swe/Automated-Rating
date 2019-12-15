@@ -9,7 +9,7 @@
 # filename = 'C:/Users/User/Documents/Visual Studio Code/project 350/Automated-Rating/Natural Language Processing NLP/sentiment.sav'
 
 import pickle
-from posts.models import Posts
+from posts.models import Posts, ItemsList, Comment
 from statistics import mean
 import numpy as np
 import time
@@ -19,21 +19,23 @@ loaded_vect = pickle.load(open(filename, 'rb'))
 filename = 'C:/Users/tamim/PyProjects/AutomatedRating/Natural Language Processing NLP/sentiment.sav'
 loaded_model = pickle.load(open(filename, 'rb'))
 
-#checking
-loaded_model.predict(loaded_vect.transform(['this is super good', 'this is good']))
+# checking
+# loaded_model.predict(loaded_vect.transform(['this is super good', 'this is good']))
 
-posts = Posts.objects.all()
-starttime=time.time()
+starttime = time.time()
+items = ItemsList.objects.all()
 while True:
-     for post in posts:
-         comments = post.comments.all()
+     for item in items:
          rat_lst = []
-         for comment in comments:
-             ar = loaded_model.predict(loaded_vect.transform([str(comment)]))
-             rat = (ar[0] + 1)*2
-             rat_lst.append(np.float64(rat).item())
+         posts = item.posts_set.all()  # using choice set for reverse lookup
+         for post in posts:
+             comments = post.comments.all()
+             for comment in comments:
+                 ar = loaded_model.predict(loaded_vect.transform([str(comment)]))
+                 rat = (ar[0] + 1)*2
+                 rat_lst.append(np.float64(rat).item())
          if (rat_lst != []):
-             post.post_item.rating = mean(rat_lst)
-             post.post_item.save()
-     print('success')
-     time.sleep(3.0 - ((time.time() - starttime) % 3.0))
+             item.rating = mean(rat_lst)
+             item.save()
+     print('success', time.time())
+     time.sleep(4.0 - ((time.time() - starttime) % 4.0))
