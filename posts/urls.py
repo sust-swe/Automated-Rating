@@ -9,5 +9,6 @@ urlpatterns = [
     path('create/', views.create, name='create'),
     path('search/', views.search, name='search'),
     path('like/', views.like_post, name='like_post'),
-    path('archivesgrid/' , views.archives_grid , name='archives_grid' )
+    path('updaterating/', views.updaterating, name='updaterating'),
+    path('archivesgrid/', views.archives_grid, name='archives_grid')
 ]

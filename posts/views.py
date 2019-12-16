@@ -241,3 +241,16 @@ def search(request):
     }
 
     return render(request, 'posts/search.html', context)
+
+import subprocess
+
+
+def updaterating(request):
+    if request.POST:
+        # give the absolute path to your `text4midiAllMilisecs.py`
+        # and for `tiger.mid`
+        # subprocess.call(['python', '/path/to/text4midiALLMilisecs.py', '/path/to/tiger.mid'])
+
+        subprocess.call(['python.exe','C:/Users/tamim/PyProjects/AutomatedRating/test.sh'])
+
+    return render(request, 'posts/update_rating.html',{})

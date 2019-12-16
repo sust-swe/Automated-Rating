@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Abooooooooooooout</h1>
+<form action="{% url 'run_sh' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Call</button>
+</form>
 {% endblock %}
