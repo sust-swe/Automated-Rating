@@ -21,8 +21,11 @@ for item in items:
          comments = post.comments.all()
          for comment in comments:
              ar = loaded_model.predict(loaded_vect.transform([str(comment)]))
-             rat = (ar[0] + 1)*2
-             rat_lst.append(np.float64(rat).item())
+             rat = ((ar[0] + 1)*2)-0.1
+             rat = np.float64(rat).item()
+             comment.scores = rat
+             comment.save()
+             rat_lst.append(rat)
      if (rat_lst != []):
          item.rating = mean(rat_lst)
          item.save()
