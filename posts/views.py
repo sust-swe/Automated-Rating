@@ -13,6 +13,7 @@ from .choices import rating_choices, category_choices, postcriteria_choices
 from . import forms
 import imghdr
 import sys
+import subprocess
 
 # Create your views here.
 
@@ -122,6 +123,7 @@ def details(request, id):
             instance.author = request.user
             instance.post = post
             instance.save()
+            subprocess.call(['python.exe','C:/Users/tamim/PyProjects/AutomatedRating/singleupdate.sh'])
             return redirect("details", id=post.id)
 
     form = forms.CommentForm()
@@ -241,8 +243,6 @@ def search(request):
     }
 
     return render(request, 'posts/search.html', context)
-
-import subprocess
 
 
 def updaterating(request):
