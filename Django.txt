@@ -43,6 +43,27 @@ DATABASES = {
 	-> python manage.py migrate --fake posts zero
 	-> python manage.py migrate posts
 
+			otherwise --
+			Initialize migrations for your existing models:
+
+		./manage.py makemigrations myapp
+		Fake migrations for existing models:
+
+		./manage.py migrate --fake myapp
+		Add the new field to myapp.models:
+
+		from django.db import models
+
+		class MyModel(models.Model):
+			... #existing fields
+			newfield = models.CharField(max_length=100) #new field
+		Run makemigrations again (this will add a new migration file in migrations folder that add the newfield to db):
+
+		./manage.py makemigrations myapp
+		Run migrate again:
+
+		./manage.py migrate myapp
+
 ### adding login required function such as creating post :
 	-> See this : 
 		- Posts:view

@@ -106,8 +106,8 @@
     // :: 9.0 CounterUp Active Code
     if ($.fn.counterUp) {
         $('.counter').counterUp({
-            delay: 10,
-            time: 3000
+            delay: 1,
+            time: 150
         });
     }
 

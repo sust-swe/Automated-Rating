@@ -6,10 +6,14 @@ from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.template.loader import render_to_string
+from django.contrib import messages
 
 from .models import Posts, Comment
 from .choices import rating_choices, category_choices, postcriteria_choices
 from . import forms
+import imghdr
+import sys
+import subprocess
 
 # Create your views here.
 
@@ -119,6 +123,7 @@ def details(request, id):
             instance.author = request.user
             instance.post = post
             instance.save()
+            #subprocess.call(['python.exe','C:/Users/tamim/PyProjects/AutomatedRating/singleupdate.sh'])
             return redirect("details", id=post.id)
 
     form = forms.CommentForm()
@@ -161,6 +166,13 @@ def like_post(request):
 @login_required(login_url="login")
 def create(request):
     if request.method == 'POST':
+        # image validity check
+        for filename, file in request.FILES.items():
+            name = request.FILES[filename].name
+            if(name.lower().endswith(('.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif')) == False):
+                messages.error(request, 'Please upload valid image File !')
+                return redirect('create')
+            
         # request.files for image
         form = forms.CreatePost(request.POST, request.FILES)
         if form.is_valid():
@@ -168,6 +180,7 @@ def create(request):
             instance = form.save(commit=False)
             instance.author = request.user
             instance.save()
+            messages.success(request, 'Successfully Created Your Post !')
             return redirect('index')
 
     else:
@@ -182,7 +195,7 @@ def search(request):
 
     queryset_list = Posts.objects.order_by('-created_at')
 
-    #keywords=avenger&author=fsda&category=Game&postcriteria=mpp&rating=5
+    # keywords=avenger&author=fsda&category=Game&postcriteria=mpp&rating=5
     # Keywords for existing in all fields
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
@@ -230,3 +243,14 @@ def search(request):
     }
 
     return render(request, 'posts/search.html', context)
+
+
+def updaterating(request):
+    if request.POST:
+        # give the absolute path to your `text4midiAllMilisecs.py`
+        # and for `tiger.mid`
+        # subprocess.call(['python', '/path/to/text4midiALLMilisecs.py', '/path/to/tiger.mid'])
+
+        subprocess.call(['python.exe','C:/Users/tamim/PyProjects/AutomatedRating/test.sh'])
+
+    return render(request, 'posts/update_rating.html',{})

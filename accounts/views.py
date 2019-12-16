@@ -6,9 +6,10 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 
+
 def login(request):
     if request.method == 'POST':
-        #login user
+        # login user
         username = request.POST['username']
         password = request.POST['password']
 
@@ -32,7 +33,7 @@ def login(request):
 
 def register(request):
     if request.method == 'POST':
-        #get Form variable
+        # get Form variable
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         username = request.POST['username']
@@ -47,17 +48,17 @@ def register(request):
         #check validation
         elif password == password2:
             #check existing username
-            if User.objects.filter(username = username).exists():
+            if User.objects.filter(username=username).exists():
                 messages.error(request, 'Username is already Taken !')
                 return redirect('register')
             else:
                 #check existing email
-                if User.objects.filter(email = email).exists():
+                if User.objects.filter(email=email).exists():
                     messages.error(request, 'Email is registered Before !')
                     return redirect('register')
                 else :
                     #Everything is okay
-                    user = User.objects.create_user(username = username, password = password, email = email,
+                    user = User.objects.create_user(username=username, password=password, email = email,
                     first_name = first_name, last_name = last_name)
 
                     #auto login after register

@@ -116,6 +116,10 @@
   
                 <!-- Reply Form -->
                 <div class="contact-form-area">
+
+                  <!-- Alerts Messages -->
+                  {% include 'partials/_alerts.html' %}
+
                     <form class="form-site" action="{% url 'create' %}" method="POST" enctype="multipart/form-data"> 
                       <div class="row">
                             <div class="col-12 col-lg-12">

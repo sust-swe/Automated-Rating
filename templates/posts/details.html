@@ -209,12 +209,7 @@
                 <div class="contact-form-area">
                     <form class="form-site" action="{% url 'details' id=post.id %}" method="POST" enctype="multipart/form-data"> 
                       <div class="row">
-                            <div class="col-12 col-lg-6">
-                                <input type="text" class="form-control" style="color: cornsilk; " id="name" placeholder="Your Name*">
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <input type="email" class="form-control" style="color: cornsilk;" id="email" placeholder="Your Email*">
-                            </div>
+                            
                             <div class="col-12 col-lg-12">
                               {% csrf_token %}
                               {{ form }}

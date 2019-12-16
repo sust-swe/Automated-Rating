@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
+
 from django.contrib.messages import constants as messages
 import os
 
@@ -41,8 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'pages',
-    'accounts',
     'posts',
+    'accounts',
     'crispy_forms',
 
 ]
@@ -86,6 +87,9 @@ WSGI_APPLICATION = 'automatedRating.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
         'NAME': 'automatedRating',
         'USER': 'root',
         'Password': '',
