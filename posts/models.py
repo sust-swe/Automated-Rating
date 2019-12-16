@@ -27,6 +27,7 @@ class ItemsList(models.Model):
 
     item_summary = models.CharField(max_length=200)
     rating = models.DecimalField(decimal_places=1, max_digits=2)
+    numcomment = models.DecimalField(decimal_places=4, max_digits=5, null=True, blank=True, default=None)
 
     class Meta:
         # otherwise we get "Tutorial Seriess in admin"
@@ -94,7 +95,7 @@ class Comment(models.Model):
                              blank=True, null=True, related_name='comments',)
     author = models.ForeignKey(User, models.SET_NULL, blank=True, null=True, related_name='authcomments')
     text = models.TextField()
-    scores = models.DecimalField(decimal_places=1, max_digits=2, blank=True, default=None)
+    scores = models.DecimalField(decimal_places=1, max_digits=2, null=True, blank=True, default=None)
     created_date = models.DateTimeField(default=datetime.now)
 
     def __str__(self):

@@ -13,6 +13,15 @@ loaded_model = pickle.load(open(filename, 'rb'))
 # checking
 # loaded_model.predict(loaded_vect.transform(['this is super good', 'this is good']))
 
+"""comments = Comment.objects.filter(scores__isnull=True)
+for comment in comments:
+     ar = loaded_model.predict(loaded_vect.transform([str(comment)]))
+     rat = ((ar[0] + 1)*2)-0.1
+     rat = np.float64(rat).item()
+     comment.scores = rat
+     comment.save()
+     cmt.post.post_item.rating"""
+
 items = ItemsList.objects.all()
 for item in items:
      rat_lst = []
