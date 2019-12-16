@@ -123,7 +123,7 @@ def details(request, id):
             instance.author = request.user
             instance.post = post
             instance.save()
-            #subprocess.call(['python.exe','C:/Users/tamim/PyProjects/AutomatedRating/singleupdate.sh'])
+            subprocess.call(['python.exe','C:/Users/tamim/PyProjects/AutomatedRating/singleupdate.sh'])
             return redirect("details", id=post.id)
 
     form = forms.CommentForm()

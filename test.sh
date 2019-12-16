@@ -27,6 +27,8 @@ for item in items:
              comment.save()
              rat_lst.append(rat)
      if (rat_lst != []):
+         tot_comment = len(rat_lst)
+         item.numcomment = tot_comment
          item.rating = mean(rat_lst)
          item.save()
 print("successfully updated rating")
