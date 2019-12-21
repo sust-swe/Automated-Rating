@@ -22,10 +22,13 @@ for comment in comments:
      comment.scores = rat
      comment.save()
      item = comment.post.post_item
-     tot_com = (float(item.numcomment))
+     if(item.numcomment):
+         item.numcomment = item.numcomment + 1
+     else:
+         item.numcomment = 1
+     tot_com = (float(item.numcomment - 1))
      prev_rat = (float(item.rating))
      new_rat = ((tot_com*prev_rat)+rat)/(tot_com + 1)
-     item.numcomment = item.numcomment + 1
      item.rating = new_rat
      item.save()
 print('successfully updated rating')
